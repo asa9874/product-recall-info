@@ -1,9 +1,11 @@
 import { getProductRecallInfo } from "./apis/getProductRecallInfoApi"
+import Headers from "./components/Headers"
 
 function Foods() {
-  console.log(getProductRecallInfo())
+  //console.log(getProductRecallInfo())
   return (
     <>
+      <Headers />
     </>
   )
 }
