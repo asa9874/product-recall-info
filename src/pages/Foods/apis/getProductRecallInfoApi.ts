@@ -4,7 +4,7 @@ import { ProductRecallInfo } from '../types/ProductRecallInfo';
 
 export const getProductRecallInfo = async (): Promise<ProductRecallInfo[]> => {
     const url =
-      "http://openapi.foodsafetykorea.go.kr/api/" +
+      "https://openapi.foodsafetykorea.go.kr/api/" +
       import.meta.env.VITE_API_KEY +
       "/I0490/json/1/30";
   
