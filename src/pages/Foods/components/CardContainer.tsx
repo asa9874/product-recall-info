@@ -62,7 +62,7 @@ function CardContainer() {
             key={product.PRDLST_REPORT_NO}
             CRET_DTM={product.CRET_DTM}
             RTRVL_GRDCD_NM={product.RTRVL_GRDCD_NM}
-            IMG_FILE_PATH={product.IMG_FILE_PATH}
+            IMG_FILE_PATH={product.IMG_FILE_PATH.split(",")[0]}
             PRDTNM={product.PRDTNM}
             RTRVLPRVNS={product.RTRVLPRVNS}
           />
