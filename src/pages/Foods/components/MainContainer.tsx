@@ -49,7 +49,7 @@ function MainContainer() {
   return (
     <div className="place-items-center">
       <InfiniteScroll
-          className="bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10  place-items-center shadow-xl rounded-md p-5 "
+          className="bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10  place-items-center shadow-xl rounded-md p-4"
           dataLength={productData.length}
           next={fetchData}
           hasMore={hasMore}
