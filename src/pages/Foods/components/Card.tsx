@@ -1,16 +1,12 @@
 import { useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import { ProductRecallInfo } from "../types/ProductRecallInfo";
 
 interface CardProps {
-  CRET_DTM: string; // 생성일
-  RTRVL_GRDCD_NM: string; // 회수 등급
-  IMG_FILE_PATH: string; // 이미지 경로
-  PRDTNM: string; // 제품명
-  RTRVLPRVNS: string; // 회수 사유
+  product: ProductRecallInfo; // product prop을 하나로 받아오기
 }
 
-function Card({ CRET_DTM, RTRVL_GRDCD_NM, IMG_FILE_PATH, PRDTNM, RTRVLPRVNS }: CardProps) {
+function Card({ product }: CardProps) {
+  const { CRET_DTM, RTRVL_GRDCD_NM, IMG_FILE_PATH, PRDTNM, RTRVLPRVNS } = product;
   const [hasError, setHasError] = useState(false);
 
   return (
@@ -29,7 +25,6 @@ function Card({ CRET_DTM, RTRVL_GRDCD_NM, IMG_FILE_PATH, PRDTNM, RTRVLPRVNS }: C
             onError={() => setHasError(true)}
           />
         )}
-        {!IMG_FILE_PATH && <Skeleton height="100%"/>}
       </div>
       <div
         className={`

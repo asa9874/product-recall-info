@@ -6,11 +6,16 @@ export const getProductRecallInfo = async (page: number): Promise<ProductRecallI
   const url =
     "https://openapi.foodsafetykorea.go.kr/api/" +
     import.meta.env.VITE_FOOD_API_KEY +
-    `/I0490/json/${page}/${page+30}`;
+    `/I0490/json/${1+page*30}/${30+page*30}`;
 
   try {
     const response = await axios.get(url);
     const items = response.data.I0490.row;
+
+    if (!Array.isArray(items)) {
+      return [];
+    }
+    
     return items.map((item: any) => ({
       PRDTNM: item.PRDTNM,
       RTRVLPRVNS: item.RTRVLPRVNS,
@@ -23,7 +28,7 @@ export const getProductRecallInfo = async (page: number): Promise<ProductRecallI
       RTRVLPLANDOC_RTRVLMTHD: item.RTRVLPLANDOC_RTRVLMTHD,
       DISTBTMLMT: item.DISTBTMLMT,
       PRDLST_TYPE: item.PRDLST_TYPE,
-      IMG_FILE_PATH: item.IMG_FILE_PATH,
+      IMG_FILE_PATH: item.IMG_FILE_PATH.split(",")[0],
       PRDLST_CD: item.PRDLST_CD,
       CRET_DTM: item.CRET_DTM,
       RTRVLDSUSE_SEQ: item.RTRVLDSUSE_SEQ,
