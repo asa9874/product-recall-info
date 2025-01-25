@@ -15,7 +15,9 @@
     "axios": "^1.7.9",
     "bcsd-frontend-project": "file:",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-loading": "^2.0.3",
+    "react-loading-skeleton": "^3.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
