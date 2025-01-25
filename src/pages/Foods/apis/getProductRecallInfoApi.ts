@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { ProductRecallInfo } from '../types/ProductRecallInfo';
 
-
+const CALLCOUNT=30;
 export const getProductRecallInfo = async (page: number): Promise<ProductRecallInfo[]> => {
+  console.log(page)
   const url =
     "https://openapi.foodsafetykorea.go.kr/api/" +
     import.meta.env.VITE_FOOD_API_KEY +
-    `/I0490/json/${1+page*30}/${30+page*30}`;
+    `/I0490/json/${1+page*CALLCOUNT}/${30+page*CALLCOUNT}`;
 
   try {
     const response = await axios.get(url);

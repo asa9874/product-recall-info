@@ -42,8 +42,8 @@ function CardContainer() {
     return(
       <div className="bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10  place-items-center shadow-xl rounded-md p-4">
         {Array.from({ length: 20 }).map((_, index) => (
-            <LoadingCard key={index} />
-          ))}
+          <LoadingCard key={`loading-card-${index}`} />
+        ))}
       </div>
     ) 
   }
@@ -56,7 +56,7 @@ function CardContainer() {
           dataLength={productData.length}
           next={fetchData}
           hasMore={hasMore}
-          loader={ <LoadingCard/>}
+          loader={ <LoadingCard key={`loading-card`} />}
           endMessage={<div>더 이상 데이터가 없습니다.</div>}
       >
         {productData.map((product) => (
