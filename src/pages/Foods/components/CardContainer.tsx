@@ -4,7 +4,7 @@ import Card from "./Card";
 import { ProductRecallInfo } from "../types/ProductRecallInfo";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function MainContainer() {
+function CardContainer() {
   const [productData, setProductData] = useState<ProductRecallInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
   const [error, setError] = useState<string | null>(null); // 에러 상태
@@ -48,6 +48,7 @@ function MainContainer() {
 
   return (
     <div className="place-items-center">
+      
       <InfiniteScroll
           className="bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10  place-items-center shadow-xl rounded-md p-4"
           dataLength={productData.length}
@@ -71,4 +72,4 @@ function MainContainer() {
   );
 }
 
-export default MainContainer;
+export default CardContainer;

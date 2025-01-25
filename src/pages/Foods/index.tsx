@@ -1,11 +1,11 @@
 import Headers from "./components/Headers"
-import MainContainer from "./components/MainContainer"
+import CardContainer from "./components/CardContainer"
 
 function Foods() {
   return (
     <div className="bg-neutral-300">
       <Headers />
-      <MainContainer />
+      <CardContainer />
     </div>
   )
 }
