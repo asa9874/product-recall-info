@@ -49,10 +49,9 @@ function CardContainer() {
   }
 
   return (
-    <div className="place-items-center">
-      
+    <div className="flex">
       <InfiniteScroll
-          className="bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10  place-items-center shadow-xl rounded-md p-4"
+          className=" bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10  place-items-center shadow-xl rounded-md p-4 pr-20 pl-20"
           dataLength={productData.length}
           next={fetchData}
           hasMore={hasMore}

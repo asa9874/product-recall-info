@@ -10,7 +10,7 @@ function Card({ product }: CardProps) {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="bg-zinc-50 w-full h-90 p-4 rounded-lg shadow-md flex justify-center flex-col space-y-2">
+    <div className="bg-zinc-50 w-full h-90 p-4 rounded-lg shadow-md flex justify-center flex-col space-y-2 hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer">
       <div className="text-sm text-gray-500">{CRET_DTM.split(" ")[0]}</div>
       <div className="relative w-full h-44 rounded-md overflow-hidden">
         {hasError ? (
