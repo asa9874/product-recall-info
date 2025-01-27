@@ -2,12 +2,21 @@ import axios from 'axios';
 import { ProductRecallInfo } from '../types/ProductRecallInfo';
 
 const CALLCOUNT=30;
-export const getProductRecallInfo = async (page: number): Promise<ProductRecallInfo[]> => {
+export const getProductRecallInfo = async (page: number,searchString:string): Promise<ProductRecallInfo[]> => {
   console.log(page)
-  const url =
+  const url1 =
     "https://openapi.foodsafetykorea.go.kr/api/" +
     import.meta.env.VITE_FOOD_API_KEY +
     `/I0490/json/${1+page*CALLCOUNT}/${30+page*CALLCOUNT}`;
+
+
+  const url2 =
+    "https://openapi.foodsafetykorea.go.kr/api/" +
+    import.meta.env.VITE_FOOD_API_KEY +
+    `/I0490/json/1/500`;
+
+  // searchString이 존재하면 url2, 없으면 url1
+  const url = searchString ? url2 : url1;
 
   try {
     const response = await axios.get(url);

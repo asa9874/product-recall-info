@@ -15,20 +15,20 @@ function CardContainer() {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const { searchString } = useStore();
 
-  //TODO: 페이지 초기화버그 수정, 검색시 전체 상품중 조회
+  //TODO: 페이지 초기화버그 수정
   useEffect(() => {
+    setPage(0);  
     setProductData([]);  
     setError(null); 
-    setPage(0);  
     setLoading(true)
     setHasMore(true); 
-    if (searchString) fetchData()
+    fetchData()
   }, [searchString]);  
 
   // API 데이터 가져오기
   const fetchData = async () => {
     try {
-      const data = await getProductRecallInfo(page); // 페이지 번호를 API에 전달
+      const data = await getProductRecallInfo(page,searchString); // 페이지 번호를 API에 전달
       const filteredData = searchString
         ? data.filter((item) => item.PRDTNM.includes(searchString)) // PRDTNM에 searchString이 포함된 항목만
         : data;
@@ -44,13 +44,6 @@ function CardContainer() {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (!searchString) {
-      fetchData(); // 첫 로딩 시 데이터 가져오기
-    }
-  }, []);
- 
 
   if (error) {
     return(
@@ -78,7 +71,7 @@ function CardContainer() {
           className="w-screen bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10  place-items-center shadow-xl rounded-md p-6"
           dataLength={productData.length}
           next={fetchData}
-          hasMore={hasMore}
+          hasMore={hasMore && !searchString}
           loader={ <LoadingCard key={`loading-card`} />}
           endMessage={<div>더 이상 데이터가 없습니다.</div>}
       >
