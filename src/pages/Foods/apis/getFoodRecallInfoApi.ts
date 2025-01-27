@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { ProductRecallInfo } from '../types/ProductRecallInfo';
+import { FoodRecallInfo } from '../types/FoodRecallInfo';
 
 const CALLCOUNT=30;
-export const getProductRecallInfo = async (page: number,searchString:string): Promise<ProductRecallInfo[]> => {
+export const getFoodRecallInfo = async (page: number,searchString:string): Promise<FoodRecallInfo[]> => {
   console.log(page)
   const url1 =
     "https://openapi.foodsafetykorea.go.kr/api/" +

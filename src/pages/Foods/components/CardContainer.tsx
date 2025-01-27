@@ -1,14 +1,14 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { getProductRecallInfo } from "../apis/getProductRecallInfoApi";
+import { getFoodRecallInfo } from "../apis/getFoodRecallInfoApi";
 import { useStore } from '../context';
-import { ProductRecallInfo } from "../types/ProductRecallInfo";
+import { FoodRecallInfo } from "../types/FoodRecallInfo";
 import Card from "./Card";
 import LoadingCard from "./LoadingCard";
 
 function CardContainer() {
-  const [productData, setProductData] = useState<ProductRecallInfo[]>([]);
+  const [productData, setProductData] = useState<FoodRecallInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
   const [error, setError] = useState<string | null>(null); // 에러 상태
   const [page, setPage] = useState<number>(0);
@@ -28,7 +28,8 @@ function CardContainer() {
   // API 데이터 가져오기
   const fetchData = async () => {
     try {
-      const data = await getProductRecallInfo(page,searchString); // 페이지 번호를 API에 전달
+      //TODO: 여기에 데이터분기점 추가하기
+      const data = await getFoodRecallInfo(page,searchString); // 페이지 번호를 API에 전달
       const filteredData = searchString
         ? data.filter((item) => item.PRDTNM.includes(searchString)) // PRDTNM에 searchString이 포함된 항목만
         : data;
@@ -76,6 +77,7 @@ function CardContainer() {
           endMessage={<div>더 이상 데이터가 없습니다.</div>}
       >
         {productData.map((product) => (
+          //TODO: 이부분 카드 종류별로 나누고 분기점 나누기
           <Card key={product.PRDLST_REPORT_NO} product={product} />
         ))}
       </InfiniteScroll>

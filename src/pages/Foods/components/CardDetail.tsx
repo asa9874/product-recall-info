@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { ProductRecallInfo } from "../types/ProductRecallInfo";
+import { FoodRecallInfo } from "../types/FoodRecallInfo";
 
 
 
 interface CardDetailProps {
-  product: ProductRecallInfo;
+  product: FoodRecallInfo;
   onClose: () => void; // 모달 닫기 핸들러
 }
 

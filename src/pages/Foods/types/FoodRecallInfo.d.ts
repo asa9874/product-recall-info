@@ -1,4 +1,4 @@
-export interface ProductRecallInfo {
+export interface FoodRecallInfo {
     PRDTNM:                      string; // 제품명
     RTRVLPRVNS:                  string; // 회수사유
     BSSHNM:                      string; // 제조업체명

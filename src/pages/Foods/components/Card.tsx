@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { ProductRecallInfo } from "../types/ProductRecallInfo";
+import { FoodRecallInfo } from "../types/FoodRecallInfo";
 import CardDetail from "./CardDetail";
 
 interface CardProps {
-  product: ProductRecallInfo; // product prop을 하나로 받아오기
+  product: FoodRecallInfo; // product prop을 하나로 받아오기
 }
 
 function Card({ product }: CardProps) {
