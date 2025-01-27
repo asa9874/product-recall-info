@@ -1,7 +1,8 @@
-import Headers from "./components/Headers"
 import CardContainer from "./components/CardContainer"
-import Footer from "./components/Footer"
 import CollapseMenu from "./components/CollapseMenu"
+import Footer from "./components/Footer"
+import Headers from "./components/Headers"
+
 
 function Foods() {
   return (
