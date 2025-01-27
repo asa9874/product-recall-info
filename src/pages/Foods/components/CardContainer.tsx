@@ -2,10 +2,10 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getProductRecallInfo } from "../apis/getProductRecallInfoApi";
+import { useStore } from '../context';
 import { ProductRecallInfo } from "../types/ProductRecallInfo";
 import Card from "./Card";
 import LoadingCard from "./LoadingCard";
- 
 
 function CardContainer() {
   const [productData, setProductData] = useState<ProductRecallInfo[]>([]);
@@ -13,15 +13,29 @@ function CardContainer() {
   const [error, setError] = useState<string | null>(null); // 에러 상태
   const [page, setPage] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const { searchString } = useStore();
+
+  //TODO: 페이지 초기화버그 수정, 검색시 전체 상품중 조회
+  useEffect(() => {
+    setProductData([]);  
+    setError(null); 
+    setPage(0);  
+    setLoading(true)
+    setHasMore(true); 
+    if (searchString) fetchData()
+  }, [searchString]);  
 
   // API 데이터 가져오기
   const fetchData = async () => {
     try {
       const data = await getProductRecallInfo(page); // 페이지 번호를 API에 전달
-      if (data.length === 0) {
+      const filteredData = searchString
+        ? data.filter((item) => item.PRDTNM.includes(searchString)) // PRDTNM에 searchString이 포함된 항목만
+        : data;
+      if (filteredData.length === 0) {
         setHasMore(false); // 더 이상 데이터가 없으면 종료
       } else {
-        setProductData((prevData) => [...prevData, ...data]); // 기존 데이터에 새로운 데이터를 추가
+        setProductData((prevData) => [...prevData, ...filteredData]); // 기존 데이터에 새로운 데이터를 추가
         setPage((prevPage) => prevPage + 1); // 페이지 번호 증가
       }
       setLoading(false);
@@ -32,7 +46,9 @@ function CardContainer() {
   };
 
   useEffect(() => {
-    fetchData(); // 첫 로딩 시 데이터 가져오기
+    if (!searchString) {
+      fetchData(); // 첫 로딩 시 데이터 가져오기
+    }
   }, []);
  
 
@@ -57,9 +73,9 @@ function CardContainer() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <InfiniteScroll
-          className=" bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10  place-items-center shadow-xl rounded-md p-6"
+          className="w-screen bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10  place-items-center shadow-xl rounded-md p-6"
           dataLength={productData.length}
           next={fetchData}
           hasMore={hasMore}
