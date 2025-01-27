@@ -1,9 +1,11 @@
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from "react";
-import { getProductRecallInfo } from "../apis/getProductRecallInfoApi";
-import Card from "./Card";
-import { ProductRecallInfo } from "../types/ProductRecallInfo";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { getProductRecallInfo } from "../apis/getProductRecallInfoApi";
+import { ProductRecallInfo } from "../types/ProductRecallInfo";
+import Card from "./Card";
 import LoadingCard from "./LoadingCard";
+ 
 
 function CardContainer() {
   const [productData, setProductData] = useState<ProductRecallInfo[]>([]);
@@ -24,7 +26,7 @@ function CardContainer() {
       }
       setLoading(false);
     } catch (err) {
-      setError("데이터를 불러오는 중 오류가 발생했습니다."+err);
+      setError("데이터를 불러오는 중 오류가 발생했습니다. "+err);
       setLoading(false);
     }
   };
@@ -35,7 +37,13 @@ function CardContainer() {
  
 
   if (error) {
-    return <div>{error}</div>;
+    return(
+      <div className="h-screen flex flex-col items-center justify-center text-2xl text-red-500">
+      <ExclamationTriangleIcon className="h-1/4 w-1/4 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-32 lg:w-32" />
+      <a className="text-center px-4">{error}</a>
+      <button className="mt-20 bg-emerald-50 text-black rounded-3xl w-4/5 h-12 sm:w-3/5 md:w-2/5 lg:w-1/4" onClick={() => window.location.reload()}>재접속</button>
+    </div>
+    );
   }
 
   if (loading) {
