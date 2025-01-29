@@ -13,7 +13,7 @@ function CardContainer() {
   const [error, setError] = useState<string | null>(null); // 에러 상태
   const [page, setPage] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
-  const { searchString } = useStore();
+  const { searchString,selectedItem } = useStore();
 
   //TODO: 페이지 초기화버그 수정
   useEffect(() => {
@@ -23,7 +23,8 @@ function CardContainer() {
     setLoading(true)
     setHasMore(true); 
     fetchData()
-  }, [searchString]);  
+  }, [searchString,selectedItem]);   
+
 
   // API 데이터 가져오기
   const fetchData = async () => {
