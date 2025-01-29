@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { FoodRecallInfo } from "../types/FoodRecallInfo";
-import CardDetail from "./CardDetail";
+import { FoodRecallInfo } from "../../types/FoodRecallInfo";
+import FoodCardDetail from "./FoodCardDetail";
 
 interface CardProps {
-  product: FoodRecallInfo; // product prop을 하나로 받아오기
+  product: FoodRecallInfo;  
 }
 
-function Card({ product }: CardProps) {
+function FoodCard({ product }: CardProps) {
   const { CRET_DTM, RTRVL_GRDCD_NM, IMG_FILE_PATH, PRDTNM, RTRVLPRVNS } = product;
   const [hasError, setHasError] = useState(false);
   const [openModal, setOpenModal] = useState(false); // 모달 열림/닫힘 상태 관리
@@ -47,7 +47,7 @@ function Card({ product }: CardProps) {
       </div>
 
       {openModal && (
-        <CardDetail
+        <FoodCardDetail
           product={product}
           onClose={() => setOpenModal(false)} // 모달 닫기 핸들러
         />
@@ -56,4 +56,4 @@ function Card({ product }: CardProps) {
   );
 }
 
-export default Card;
+export default FoodCard;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { FoodRecallInfo } from "../types/FoodRecallInfo";
+import { FoodRecallInfo } from "../../types/FoodRecallInfo";
 
 
 
@@ -8,7 +8,7 @@ interface CardDetailProps {
   onClose: () => void; // 모달 닫기 핸들러
 }
 
-function CardDetail({ product, onClose }: CardDetailProps) {
+function FoodCardDetail({ product, onClose }: CardDetailProps) {
   const {
     CRET_DTM,
     RTRVL_GRDCD_NM,
@@ -132,4 +132,4 @@ function CardDetail({ product, onClose }: CardDetailProps) {
   );
 }
 
-export default CardDetail;
+export default FoodCardDetail;

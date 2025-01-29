@@ -4,8 +4,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { getFoodRecallInfo } from "../apis/getFoodRecallInfoApi";
 import { useStore } from '../context';
 import { FoodRecallInfo } from "../types/FoodRecallInfo";
-import Card from "./Card";
-import LoadingCard from "./LoadingCard";
+import FoodCard from "./card/FoodCard";
+import LoadingCard from "./card/LoadingCard";
 
 function CardContainer() {
   const [productData, setProductData] = useState<FoodRecallInfo[]>([]);
@@ -79,7 +79,7 @@ function CardContainer() {
       >
         {productData.map((product) => (
           //TODO: 이부분 카드 종류별로 나누고 분기점 나누기
-          <Card key={product.PRDLST_REPORT_NO} product={product} />
+          <FoodCard key={product.PRDLST_REPORT_NO} product={product} />
         ))}
       </InfiniteScroll>
     </div>
