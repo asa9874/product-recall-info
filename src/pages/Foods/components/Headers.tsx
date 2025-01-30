@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useStore } from '../context';
+import CollapseMenu from './CollapseMenu';
 
 function Headers() {
   const { searchString, setSearchString } = useStore(); // zustand store에서 값 가져오기
@@ -10,7 +11,7 @@ function Headers() {
     setSearchString(inputValue); // 검색어를 zustand store에 저장
   };
   return (
-    <>
+    <div className='sticky top-0 z-50'>
       <header className='flex shadow-[0px_10px_16px_rgba(17,_17,_26,_0.1)] py-4 px-4 sm:px-6 bg-white font-sans min-h-[70px] tracking-wide relative z-50'>
         <div className='flex items-center hidden sm:flex'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-10">
@@ -58,7 +59,8 @@ function Headers() {
           </div>
         </div>
       </header>
-    </>
+      <CollapseMenu/>
+    </div>
   )
 }
 
