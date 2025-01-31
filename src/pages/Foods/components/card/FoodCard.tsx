@@ -18,7 +18,7 @@ function FoodCard({ product }: CardProps) {
   });
 
 
-
+//TODO: 카드 베이스 UI 구현
   return (
     <>
       <motion.div

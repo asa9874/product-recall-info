@@ -60,11 +60,10 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
           <p className="text-xs font-semibold">
             유해물질: <span className="text-red-500">{DETECT_TITL}</span>
           </p>
-          <p className="text-xs text-gray-700">상세 내용: {BDT}</p>
+          <p className="text-xs text-gray-700 whitespace-pre-line">상세 내용: {BDT}</p>
         </div>
 
         <div className="mt-4 border-t pt-3">
-          <h4 className="text-xs font-bold">게시글 정보</h4>
           <p className="text-xs">게시글 번호: {NTCTXT_NO}</p>
         </div>
 
