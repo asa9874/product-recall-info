@@ -14,40 +14,45 @@ function CardContainer() {
   const [productData, setProductData] = useState<(FoodRecallInfo | ForeignFoodRecallInfo)[]>([]); // 제품 데이터 타입 명시
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
   const [error, setError] = useState<string | null>(null); // 에러 상태
-  const [page, setPage] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
-  const { searchString, selectedItem } = useStore();
+  const { searchString, selectedItem, page, setPage} = useStore();
 
   //TODO: 페이지 초기화버그 수정
   useEffect(() => {
+    window.scrollTo(0, 0);
     setPage(0);  
     setProductData([]);  
     setError(null); 
-    fetchData();
     setLoading(true);
     setHasMore(true); 
+    fetchData(0);
   }, [searchString, selectedItem]);
 
+  useEffect(() => {
+    if (page > 0) {
+      fetchData(page);
+    }
+  }, [page]);
+
   // API 데이터 가져오기
-  const fetchData = async () => {
+  const fetchData = async (currentPage: number) => {
     try {
-      setPage((prevPage) => prevPage + 1); // 페이지 번호 증가
       let data;
       let filteredData: (FoodRecallInfo | ForeignFoodRecallInfo)[] = [];
       // 데이터 분기점 추가
       if (selectedItem === "해외식품") {
-        data = await getForeignFoodNoticeInfo(page, searchString);
+        data = await getForeignFoodNoticeInfo(currentPage, searchString);
         filteredData = searchString
           ? data.filter((item) => item.TITL.includes(searchString)) // TITL에 searchString이 포함된 항목만
           : data;
       } else if (selectedItem === "음식") {
-        data = await getFoodRecallInfo(page, searchString);
+        data = await getFoodRecallInfo(currentPage, searchString);
         //console.log(data);
         filteredData = searchString
           ? data.filter((item) => item.PRDTNM.includes(searchString)) // PRDTNM에 searchString이 포함된 항목만
           : data;
       } else {
-        data = await getFoodRecallInfo(page, searchString);
+        data = await getFoodRecallInfo(currentPage, searchString);
         filteredData = data; // 기본값
       }
 
@@ -88,7 +93,7 @@ function CardContainer() {
       <InfiniteScroll
         className="max-w-screen overflow-hidden bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 place-items-center shadow-xl rounded-md p-6 pt-20"
         dataLength={productData.length}
-        next={fetchData}
+        next={() => setPage(page + 1)}
         hasMore={hasMore && !searchString}
         loader={<LoadingCard key={`loading-card`} />}
         endMessage={<div>더 이상 데이터가 없습니다.</div>}

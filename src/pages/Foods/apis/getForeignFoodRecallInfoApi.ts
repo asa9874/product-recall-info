@@ -3,11 +3,8 @@ import { ForeignFoodRecallInfo } from '../types/ForeignFoodRecallInfo';
 
 const CALLCOUNT = 30;
 
-export const getForeignFoodNoticeInfo = async (
-  page: number,
-  searchString: string
-): Promise<ForeignFoodRecallInfo[]> => {
-  console.log(page);
+export const getForeignFoodNoticeInfo = async (page: number,searchString: string): Promise<ForeignFoodRecallInfo[]> => {
+  console.log("해외음식",page);
 
   const url1 =
     "https://openapi.foodsafetykorea.go.kr/api/" +

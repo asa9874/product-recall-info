@@ -3,7 +3,7 @@ import { FoodRecallInfo } from '../types/FoodRecallInfo';
 
 const CALLCOUNT=30;
 export const getFoodRecallInfo = async (page: number,searchString:string): Promise<FoodRecallInfo[]> => {
-  console.log(page)
+  console.log("음식",page)
   const url1 =
     "https://openapi.foodsafetykorea.go.kr/api/" +
     import.meta.env.VITE_FOOD_API_KEY +
