@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ForeignFoodRecallInfo } from "../../types/ForeignFoodRecallInfo";
-
+import { motion } from "framer-motion"; 
 interface CardDetailProps {
   product: ForeignFoodRecallInfo;
   onClose: () => void; // 모달 닫기 핸들러
@@ -30,9 +30,13 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       onClick={handleModalClick} // 배경 클릭 시 onClose 호출
     >
-      <div
+      <motion.div
         className="bg-white w-full max-w-xl p-3 rounded-lg shadow-lg relative space-y-4"
-        onClick={(e) => e.stopPropagation()} // 내부 클릭 시 이벤트가 부모로 전달되지 않도록 stopPropagation 처리
+        onClick={(e) => e.stopPropagation()}  
+        initial={{ opacity: 0, scale: 0.9 }}  
+        animate={{ opacity: 1, scale: 1 }}  
+        exit={{ opacity: 0, scale: 0.8 }}  
+        transition={{ duration: 0.3 }} 
       >
         <h3 className="text-sm font-semibold mb-4 text-center">{TITL}</h3>
 
@@ -70,7 +74,7 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
         >
           닫기
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 }

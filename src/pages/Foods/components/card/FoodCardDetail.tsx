@@ -1,7 +1,6 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { FoodRecallInfo } from "../../types/FoodRecallInfo";
-
-
 
 interface CardDetailProps {
   product: FoodRecallInfo;
@@ -53,10 +52,13 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       onClick={handleModalClick} // 배경 클릭 시 onClose 호출
     >
-      <div
+      <motion.div
         className="bg-white w-full max-w-xl p-3 rounded-lg shadow-lg relative space-y-4"
-        // 내부 클릭 시 이벤트가 부모로 전달되지 않도록 stopPropagation 처리
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}  
+        initial={{ opacity: 0, scale: 0.9 }}  
+        animate={{ opacity: 1, scale: 1 }}  
+        exit={{ opacity: 0, scale: 0.8 }}  
+        transition={{ duration: 0.3 }} 
       >
         <h3 className="text-sm font-semibold mb-4 text-center">{PRDTNM}</h3>
 
@@ -73,9 +75,9 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
           <p className="text-xs font-semibold">
             회수등급: <span className="text-red-500">{RTRVL_GRDCD_NM}</span>
             <div className="tooltip-container inline-block relative z-100 group">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
               <div className="tooltip absolute bg-black text-white text-xs rounded py-1 px-2 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap">
                 {RTRVL_GRDCD_NM === "1등급" && (
                   <span>식품등의 섭취 또는 사용으로 인해 인체건강에 미치는 위해영향이 매우 크거나 중대한 위반행위</span>
@@ -89,8 +91,6 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
               </div>
             </div>
           </p>
-
-
 
           <p className="text-xs text-gray-700">회수 사유: {RTRVLPRVNS}</p>
 
@@ -127,7 +127,7 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
         >
           닫기
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 }
