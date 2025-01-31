@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ForeignFoodRecallInfo } from "../../types/ForeignFoodRecallInfo";
-import { motion } from "framer-motion"; 
+import CardDetail from "./Base/CardDetail";
 interface CardDetailProps {
   product: ForeignFoodRecallInfo;
   onClose: () => void; // 모달 닫기 핸들러
@@ -10,34 +10,8 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
   const { TITL, DETECT_TITL, CRET_DTM, BDT, DOWNLOAD_URL, NTCTXT_NO } = product;
   const [hasError, setHasError] = useState(false); // 이미지 오류 상태 추가
 
-  // 모달이 열릴 때 스크롤을 비활성화
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
-  const handleModalClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose(); // 배경 클릭 시 모달 닫기
-    }
-    //console.log(DOWNLOAD_URL)
-  };
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-      onClick={handleModalClick} // 배경 클릭 시 onClose 호출
-    >
-      <motion.div
-        className="bg-white w-full max-w-xl p-3 rounded-lg shadow-lg relative space-y-4"
-        onClick={(e) => e.stopPropagation()}  
-        initial={{ opacity: 0, scale: 0.9 }}  
-        animate={{ opacity: 1, scale: 1 }}  
-        exit={{ opacity: 0, scale: 0.8 }}  
-        transition={{ duration: 0.3 }} 
-      >
+    <CardDetail onClose={onClose}>
         <h3 className="text-sm font-semibold mb-4 text-center">{TITL}</h3>
 
         <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-md overflow-hidden mb-4">
@@ -73,8 +47,7 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
         >
           닫기
         </button>
-      </motion.div>
-    </div>
+    </CardDetail>
   );
 }
 

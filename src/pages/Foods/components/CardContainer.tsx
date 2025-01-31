@@ -16,6 +16,7 @@ function CardContainer() {
   const [error, setError] = useState<string | null>(null); // 에러 상태
   const [hasMore, setHasMore] = useState<boolean>(true);
   const { searchString, selectedItem, page, setPage} = useStore();
+  const [retryCount, setRetryCount] = useState<number>(0); // 오류 재시도 횟수 관리
 
   //TODO: 페이지 초기화버그 수정
   useEffect(() => {
@@ -25,6 +26,7 @@ function CardContainer() {
     setError(null); 
     setLoading(true);
     setHasMore(true); 
+    setRetryCount(0); 
     fetchData(0);
   }, [searchString, selectedItem]);
 
@@ -62,9 +64,16 @@ function CardContainer() {
         setProductData((prevData) => [...prevData, ...filteredData]); // 기존 데이터에 새로운 데이터를 추가
       }
       setLoading(false);
+      setRetryCount(0);
     } catch (err) {
-      setError("데이터를 불러오는 중 오류가 발생했습니다. " + err);
-      setLoading(false);
+      if (retryCount < 3) {
+        console.log("retryCount: ", retryCount);
+        setRetryCount(retryCount + 1); 
+        fetchData(currentPage); 
+      } else {
+        setError("데이터를 불러오는 중 오류가 발생했습니다. " + err);
+        setLoading(false);
+      }
     }
   };
 

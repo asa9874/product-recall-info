@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FoodRecallInfo } from "../../types/FoodRecallInfo";
+import CardDetail from "./Base/CardDetail";
 
 interface CardDetailProps {
   product: FoodRecallInfo;
@@ -8,6 +9,8 @@ interface CardDetailProps {
 }
 
 function FoodCardDetail({ product, onClose }: CardDetailProps) {
+  const [hasError, setHasError] = useState(false); // 이미지 오류 상태 추가
+
   const {
     CRET_DTM,
     RTRVL_GRDCD_NM,
@@ -29,47 +32,25 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
     PRDLST_CD_NM,
     LCNS_NO,
   } = product;
-
-  useEffect(() => {
-    // 모달이 열릴 때 스크롤을 비활성화
-    document.body.style.overflow = "hidden";
-
-    // 모달이 닫힐 때 스크롤을 원래대로 되돌림
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []); // 빈 배열을 넣어 컴포넌트가 마운트될 때만 실행
-
-  // 모달 배경 클릭 시 모달 닫기 처리
-  const handleModalClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
+  
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-      onClick={handleModalClick} // 배경 클릭 시 onClose 호출
-    >
-      <motion.div
-        className="bg-white w-full max-w-xl p-3 rounded-lg shadow-lg relative space-y-4"
-        onClick={(e) => e.stopPropagation()}  
-        initial={{ opacity: 0, scale: 0.9 }}  
-        animate={{ opacity: 1, scale: 1 }}  
-        exit={{ opacity: 0, scale: 0.8 }}  
-        transition={{ duration: 0.3 }} 
-      >
+    <CardDetail onClose={onClose}>
         <h3 className="text-sm font-semibold mb-4 text-center">{PRDTNM}</h3>
-
         <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-md overflow-hidden mb-4">
-          <img
-            src={IMG_FILE_PATH}
-            alt={PRDTNM}
-            className="w-full h-full object-cover rounded-md"
-          />
+          {hasError ? (
+            <div className="flex items-center justify-center bg-black h-full text-white text-sm">
+              제품 이미지가 없습니다
+            </div>
+          ) : (
+            <img
+              src={IMG_FILE_PATH}
+              alt={PRDTNM}
+              className="w-full h-full object-cover rounded-md"
+              onError={() => setHasError(true)} // 오류 발생 시 hasError 상태 true로 변경
+            />
+          )}
         </div>
-
         <div className="space-y-3">
           <p className="text-xs text-gray-500">등록일: {CRET_DTM}</p>
           <p className="text-xs font-semibold">
@@ -120,15 +101,7 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
             <p className="text-xs">업체 인허가 번호: {LCNS_NO}</p>
           </div>
         </div>
-
-        <button
-          className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-          onClick={onClose}
-        >
-          닫기
-        </button>
-      </motion.div>
-    </div>
+    </CardDetail>
   );
 }
 

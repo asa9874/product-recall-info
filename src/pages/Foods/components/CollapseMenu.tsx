@@ -33,7 +33,7 @@ function CollapseMenu() {
       className="fixed top-0 left-0 w-full bg-amber-50 shadow-md rounded-b-xl z-30 h-14 flex items-center justify-center"
     >
       <ul className="flex gap-x-5">
-        {["음식", "의약품", "해외식품"].map((item) => (
+        {["음식", "해외식품", "의약품"].map((item) => (
           <li key={item} className="py-3 px-3 relative">
             <button
               onClick={() => {
