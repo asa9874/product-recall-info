@@ -8,6 +8,7 @@ interface CardProps {
 
 function ForeignFoodCard({ product }: CardProps) {
   const { TITL, DETECT_TITL, CRET_DTM, BDT, DOWNLOAD_URL } = product;
+  //console.log(DOWNLOAD_URL);
   const [hasError, setHasError] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 

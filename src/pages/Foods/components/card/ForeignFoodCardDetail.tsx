@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ForeignFoodRecallInfo } from "../../types/ForeignFoodRecallInfo";
 
 interface CardDetailProps {
@@ -8,6 +8,7 @@ interface CardDetailProps {
 
 function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
   const { TITL, DETECT_TITL, CRET_DTM, BDT, DOWNLOAD_URL, NTCTXT_NO } = product;
+  const [hasError, setHasError] = useState(false); // 이미지 오류 상태 추가
 
   // 모달이 열릴 때 스크롤을 비활성화
   useEffect(() => {
@@ -15,12 +16,13 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, []);  
+  }, []);
 
   const handleModalClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      onClose();
+      onClose(); // 배경 클릭 시 모달 닫기
     }
+    //console.log(DOWNLOAD_URL)
   };
 
   return (
@@ -35,11 +37,18 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
         <h3 className="text-sm font-semibold mb-4 text-center">{TITL}</h3>
 
         <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-md overflow-hidden mb-4">
-          <img
-            src={DOWNLOAD_URL}
-            alt={TITL}
-            className="w-full h-full object-cover rounded-md"
-          />
+          {hasError ? (
+            <div className="flex items-center justify-center bg-black h-full text-white text-sm">
+              제품 이미지가 없습니다
+            </div>
+          ) : (
+            <img
+              src={DOWNLOAD_URL}
+              alt={TITL}
+              className="w-full h-full object-cover rounded-md"
+              onError={() => setHasError(true)} // 오류 발생 시 hasError 상태 true로 변경
+            />
+          )}
         </div>
 
         <div className="space-y-3">
