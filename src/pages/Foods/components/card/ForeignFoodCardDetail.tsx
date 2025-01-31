@@ -40,13 +40,6 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
         <div className="mt-4 border-t pt-3">
           <p className="text-xs">게시글 번호: {NTCTXT_NO}</p>
         </div>
-
-        <button
-          className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-          onClick={onClose}
-        >
-          닫기
-        </button>
     </CardDetail>
   );
 }
