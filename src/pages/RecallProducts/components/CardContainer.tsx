@@ -96,7 +96,7 @@ function CardContainer() {
 
   if (loading) {
     return (
-      <div className="bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 place-items-center shadow-xl rounded-md p-6 pt-20">
+      <div className="max-w-screen overflow-hidden bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20">
         {Array.from({ length: 20 }).map((_, index) => (
           <LoadingCard key={`loading-card-${index}`} />
         ))}
@@ -107,7 +107,7 @@ function CardContainer() {
   return (
     <div className="flex w-full">
       <InfiniteScroll
-        className="max-w-screen overflow-hidden bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 place-items-center shadow-xl rounded-md p-6 pt-20"
+        className="max-w-screen overflow-hidden bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20"
         dataLength={productData.length}
         next={() => setPage(page + 1)}
         hasMore={hasMore && !searchString}

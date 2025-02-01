@@ -25,6 +25,7 @@ function CollapseMenu() {
   }, [lastScrollY]);
 
   return (
+    
     <motion.div
       id="collapseMenu"
       initial={{ y: 0, opacity: 1 }}
@@ -32,6 +33,7 @@ function CollapseMenu() {
       transition={{ type: "spring", stiffness: 200, damping: 30 }}
       className="fixed top-0 left-0 w-full bg-amber-50 shadow-md rounded-b-xl z-30 h-14 flex items-center justify-center"
     >
+      
       <ul className="flex gap-x-5">
         {["음식", "해외식품", "의약품"].map((item) => (
           <li key={item} className="py-3 px-3 relative">
