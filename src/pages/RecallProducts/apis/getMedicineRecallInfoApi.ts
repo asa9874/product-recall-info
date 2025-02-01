@@ -18,7 +18,7 @@ export const getMedicineNoticeInfo = async (page: number, searchString: string):
 
   // 검색어가 존재하면 추가
   if (searchString.trim().length > 0) {
-      params.append("PRDUCT", searchString);
+      params.append("Prduct", searchString);
   }
 
   const url = `${BASE_URL}?${params.toString()}`;

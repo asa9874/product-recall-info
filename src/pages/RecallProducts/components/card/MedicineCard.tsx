@@ -9,7 +9,7 @@ interface CardProps {
 }
 
 function MedicineCard({ product }: CardProps) {
-  const { PRDUCT, ENTRPS, RTRVL_RESN, ENFRC_YN, RTRVL_CMMND_DT, ITEM_SEQ } = product;
+  const { PRDUCT, ENTRPS, RTRVL_RESN, ENFRC_YN, RECALL_COMMAND_DATE, ITEM_SEQ } = product;
   const [hasError, setHasError] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -20,7 +20,7 @@ function MedicineCard({ product }: CardProps) {
       CardDetail={MedicineCardDetail} 
       product={product} 
     >
-      <div className="text-sm text-gray-500">{RTRVL_CMMND_DT}</div>
+      <div className="text-sm text-gray-500">{RECALL_COMMAND_DATE}</div>
       <div className="relative w-full h-44 rounded-md overflow-hidden">
         {hasError ? (
           <div className="flex items-center justify-center bg-black h-full text-white text-sm">
