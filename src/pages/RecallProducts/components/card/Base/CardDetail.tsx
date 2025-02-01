@@ -26,20 +26,20 @@ function CardDetail({ onClose,children }: CardDetailProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       onClick={handleModalClick} // 배경 클릭 시 onClose 호출
     >
-        <motion.div
-            className="bg-white w-full max-w-xl p-3 rounded-lg shadow-lg relative space-y-4"
-            onClick={(e) => e.stopPropagation()}  
-            initial={{ opacity: 0, scale: 0.9 }}  
-            animate={{ opacity: 1, scale: 1 }}  
-            exit={{ opacity: 0, scale: 0.8 }}  
-            transition={{ duration: 0.3 }} 
-        >
-            {children}
+      <motion.div
+        className="bg-white w-full max-w-xl p-3 rounded-lg shadow-lg relative space-y-4 dark:bg-gray-800 dark:text-white"
+        onClick={(e) => e.stopPropagation()}  
+        initial={{ opacity: 0, scale: 0.9 }}  
+        animate={{ opacity: 1, scale: 1 }}  
+        exit={{ opacity: 0, scale: 0.8 }}  
+        transition={{ duration: 0.3 }} 
+      >
+        {children}
         <button
-            className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-            onClick={onClose}
+          className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition dark:bg-blue-800 dark:hover:bg-blue-700"
+          onClick={onClose}
         >
-        닫기
+          닫기
         </button>
       </motion.div>
     </div>

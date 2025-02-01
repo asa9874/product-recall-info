@@ -20,7 +20,8 @@ function MedicineCard({ product }: CardProps) {
       CardDetail={MedicineCardDetail} 
       product={product} 
     >
-      <div className="text-sm text-gray-500">{RECALL_COMMAND_DATE}</div>
+      <div className="text-sm text-gray-500 dark:text-gray-400">{RECALL_COMMAND_DATE}</div>
+      
       <div className="relative w-full h-44 rounded-md overflow-hidden">
         {hasError ? (
           <div className="flex items-center justify-center bg-black h-full text-white text-sm">
@@ -35,12 +36,16 @@ function MedicineCard({ product }: CardProps) {
           />
         )}
       </div>
-      <div className={`text-sm font-semibold w-full flex justify-center rounded-lg ${ENFRC_YN === "Y" ? "bg-red-500 text-white" : "bg-green-500 text-white"}`}>
+
+      <div className={`text-sm font-semibold w-full flex justify-center rounded-lg 
+        ${ENFRC_YN === "Y" ? "bg-red-500 text-white dark:bg-red-700 dark:text-white" : 
+        "bg-green-500 text-white dark:bg-green-700 dark:text-white"}`}>
         {ENFRC_YN === "Y" ? "강제 회수" : "자율 회수"}
       </div>
-      <div className="font-semibold text-lg truncate">{PRDUCT}</div>
-      <div className="text-sm text-gray-700 truncate">{ENTRPS}</div>
-      <div className="text-xs text-gray-600 truncate">{RTRVL_RESN}</div>
+
+      <div className="font-semibold text-lg truncate dark:text-white">{PRDUCT}</div>
+      <div className="text-sm text-gray-700 truncate dark:text-gray-300">{ENTRPS}</div>
+      <div className="text-xs text-gray-600 truncate dark:text-gray-400">{RTRVL_RESN}</div>
     </Card>
   );
 }

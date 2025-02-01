@@ -25,13 +25,13 @@ function CollapseMenu() {
   }, [lastScrollY]);
 
   return (
-    
     <motion.div
       id="collapseMenu"
       initial={{ y: 0, opacity: 1 }}
       animate={{ y: visible ? 86 : -100, opacity: visible ? 1 : 0 }}
       transition={{ type: "spring", stiffness: 200, damping: 30 }}
-      className="fixed top-0 left-0 w-full bg-amber-50 shadow-md rounded-b-xl z-30 h-14 flex items-center justify-center"
+      className={`fixed top-0 left-0 w-full shadow-md rounded-b-xl z-30 h-14 flex items-center justify-center
+        bg-amber-50 dark:bg-gray-800`} // 다크 모드 배경 추가
     >
       
       <ul className="flex gap-x-5">
@@ -42,14 +42,17 @@ function CollapseMenu() {
                 setSelectedItem(item);
                 setSearchString("");
               }}
-              className={`relative font-bold text-base ${
-                selectedItem === item ? "text-blue-500" : "text-gray-600"
-              } hover:text-[#007bff]`}
+              className={`relative font-bold text-base transition-colors duration-200
+                ${
+                  selectedItem === item
+                    ? "text-blue-500 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-300"
+                } hover:text-[#007bff] dark:hover:text-blue-500`} // 다크 모드에서 색상 변경
             >
               {item}
               <motion.span
                 layoutId="underline"
-                className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500"
+                className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500 dark:bg-blue-400" // 다크 모드 시 강조 색상 변경
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: selectedItem === item ? 1 : 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}

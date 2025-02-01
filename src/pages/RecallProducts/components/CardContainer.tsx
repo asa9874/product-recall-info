@@ -86,58 +86,50 @@ function CardContainer() {
 
   if (error) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center text-2xl text-red-500">
+      <div className="h-screen flex flex-col items-center justify-center text-2xl text-red-500 dark:text-red-400">
         <ExclamationTriangleIcon className="h-1/4 w-1/4 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-32 lg:w-32" />
         <a className="text-center px-4">{error}</a>
-        <button className="mt-20 bg-emerald-50 text-black rounded-3xl w-4/5 h-12 sm:w-3/5 md:w-2/5 lg:w-1/4" onClick={() => window.location.reload()}>재접속</button>
+        <button className="mt-20 bg-emerald-50 dark:bg-emerald-800 text-black dark:text-white rounded-3xl w-4/5 h-12 sm:w-3/5 md:w-2/5 lg:w-1/4" onClick={() => window.location.reload()}>
+          재접속
+        </button>
       </div>
     );
   }
-
+  
   if (loading) {
     return (
-      <div className="max-w-screen overflow-hidden bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20">
+      <div className="max-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-700 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20">
         {Array.from({ length: 20 }).map((_, index) => (
           <LoadingCard key={`loading-card-${index}`} />
         ))}
       </div>
     );
   }
-
+  
   return (
     <div className="flex w-full">
       <InfiniteScroll
-        className="max-w-screen overflow-hidden bg-neutral-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20"
+        className="max-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20"
         dataLength={productData.length}
         next={() => setPage(page + 1)}
         hasMore={hasMore && !searchString}
         loader={<LoadingCard key={`loading-card`} />}
-        endMessage={<div>더 이상 데이터가 없습니다.</div>}
+        endMessage={<div className="text-gray-700 dark:text-gray-300">더 이상 데이터가 없습니다.</div>}
       >
         {productData.map((product) => (
           <>
-            {selectedItem === "해외식품" && (
-              ('NTCTXT_NO' in product) && (
-                <ForeignFoodCard key={product.NTCTXT_NO} product={product} />
-              )
-            )}
-        
-            {selectedItem === "음식" && (
-               ('PRDLST_REPORT_NO' in product) && (
-                <FoodCard key={product.PRDLST_REPORT_NO} product={product} />
-              )
-            )}
-
-            {selectedItem === "의약품" && (
-               ('ITEM_SEQ' in product) && (
-                <MedicineCard key={product.ITEM_SEQ} product={product} />
-              )
-            )}
+            {selectedItem === "해외식품" &&
+              "NTCTXT_NO" in product && <ForeignFoodCard key={product.NTCTXT_NO} product={product} />}
+            {selectedItem === "음식" &&
+              "PRDLST_REPORT_NO" in product && <FoodCard key={product.PRDLST_REPORT_NO} product={product} />}
+            {selectedItem === "의약품" &&
+              "ITEM_SEQ" in product && <MedicineCard key={product.ITEM_SEQ} product={product} />}
           </>
         ))}
       </InfiniteScroll>
     </div>
   );
+  
 }
 
 export default CardContainer;

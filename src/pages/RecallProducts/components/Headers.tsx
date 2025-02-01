@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore } from '../context';
 import CollapseMenu from './CollapseMenu';
+import DarkModeToggle from './DarkModeToggle';
 
 function Headers() {
   const { searchString, setSearchString } = useStore(); // zustand store에서 값 가져오기
@@ -12,9 +13,9 @@ function Headers() {
   };
   return (
     <div className='sticky top-0 z-50'>
-      <header className='flex shadow-[0px_10px_16px_rgba(17,_17,_26,_0.1)] py-4 px-4 sm:px-6 bg-white font-sans min-h-[70px] tracking-wide relative z-50'>
+      <header className='flex shadow-[0px_10px_16px_rgba(17,_17,_26,_0.1)] dark:shadow-gray-700 py-4 px-4 sm:px-6 bg-white dark:bg-gray-900 font-sans min-h-[70px] tracking-wide relative z-50 '>
         <div className='flex items-center hidden sm:flex'>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-10">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-10 dark:text-white">
             <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75 16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" />
           </svg>
         </div>
@@ -43,14 +44,16 @@ function Headers() {
                 <input
                   type="search"
                   id="default-search"
-                  value={inputValue} // input의 value를 zustand 상태와 연결
-                  onChange={(e) => setInputValue(e.target.value)} // input의 값을 상태로 관리
-                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 
+                        dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="제품이름을 입력해주세요"
                 />
                 <button
                   type="submit"
-                  className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 
+                         dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   검색
                 </button>
@@ -58,9 +61,11 @@ function Headers() {
             </form>
           </div>
         </div>
+        <DarkModeToggle />
       </header>
-      <CollapseMenu/>
+      <CollapseMenu />
     </div>
+
   )
 }
 

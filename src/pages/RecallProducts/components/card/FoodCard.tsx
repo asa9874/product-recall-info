@@ -21,7 +21,8 @@ function FoodCard({ product }: CardProps) {
       CardDetail={FoodCardDetail} 
       product={product} 
     >
-      <div className="text-sm text-gray-500">{CRET_DTM.split(" ")[0]}</div>
+      <div className="text-sm text-gray-500 dark:text-gray-400">{CRET_DTM.split(" ")[0]}</div>
+      
       <div className="relative w-full h-44 rounded-md overflow-hidden">
         {hasError ? (
           <div className="flex items-center justify-center bg-black h-full text-white text-sm">
@@ -36,18 +37,20 @@ function FoodCard({ product }: CardProps) {
           />
         )}
       </div>
+
       <div
-      className={`
-        text-sm font-semibold w-full flex justify-center rounded-lg 
-        ${RTRVL_GRDCD_NM === "1등급" ? "bg-red-500 text-white" :
-        RTRVL_GRDCD_NM === "2등급" ? "bg-yellow-500 text-white" :
-        "bg-green-500 text-white"}
-      `}
+        className={`
+          text-sm font-semibold w-full flex justify-center rounded-lg 
+          ${RTRVL_GRDCD_NM === "1등급" ? "bg-red-500 text-white dark:bg-red-700" :
+          RTRVL_GRDCD_NM === "2등급" ? "bg-yellow-500 text-white dark:bg-yellow-700" :
+          "bg-green-500 text-white dark:bg-green-700"}
+        `}
       >
-      {RTRVL_GRDCD_NM}  회수대상
+        {RTRVL_GRDCD_NM}  회수대상
       </div>
-      <div className="font-semibold text-lg truncate">{PRDTNM}</div>
-      <div className="text-sm text-gray-700 truncate">{RTRVLPRVNS}</div>
+
+      <div className="font-semibold text-lg truncate dark:text-white">{PRDTNM}</div>
+      <div className="text-sm text-gray-700 truncate dark:text-gray-300">{RTRVLPRVNS}</div>
     </Card>
   );
 }
