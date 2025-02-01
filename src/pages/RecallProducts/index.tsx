@@ -3,7 +3,7 @@ import Footer from "./components/Footer"
 import Headers from "./components/Headers"
 
 
-function Foods() {
+function RecallProducts() {
   return (
     <div className="bg-neutral-300">
       <Headers />
@@ -13,4 +13,4 @@ function Foods() {
   )
 }
 
-export default Foods
+export default RecallProducts

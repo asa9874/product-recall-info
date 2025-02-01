@@ -9,9 +9,12 @@ import LoadingCard from "./card/LoadingCard";
 import { getForeignFoodNoticeInfo } from '../apis/getForeignFoodRecallInfoApi';
 import { ForeignFoodRecallInfo } from '../types/ForeignFoodRecallInfo';
 import ForeignFoodCard from './card/ForeignFoodCard';
+import { getMedicineNoticeInfo } from '../apis/getMedicineRecallInfoApi';
+import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
+import MedicineCard from './card/MedicineCard';
 
 function CardContainer() {
-  const [productData, setProductData] = useState<(FoodRecallInfo | ForeignFoodRecallInfo)[]>([]); // 제품 데이터 타입 명시
+  const [productData, setProductData] = useState<(FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo)[] >([]); // 제품 데이터 타입 명시
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
   const [error, setError] = useState<string | null>(null); // 에러 상태
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -40,7 +43,7 @@ function CardContainer() {
   const fetchData = async (currentPage: number) => {
     try {
       let data;
-      let filteredData: (FoodRecallInfo | ForeignFoodRecallInfo)[] = [];
+      let filteredData: (FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo)[] = [];
       // 데이터 분기점 추가
       if (selectedItem === "해외식품") {
         data = await getForeignFoodNoticeInfo(currentPage, searchString);
@@ -53,7 +56,11 @@ function CardContainer() {
         filteredData = searchString
           ? data.filter((item) => item.PRDTNM.includes(searchString)) // PRDTNM에 searchString이 포함된 항목만
           : data;
-      } else {
+      }else if (selectedItem === "의약품") {
+        data = await getMedicineNoticeInfo(currentPage, searchString);
+        filteredData= data;
+        console.log(data);
+      }else {
         data = await getFoodRecallInfo(currentPage, searchString);
         filteredData = data; // 기본값
       }
@@ -67,7 +74,7 @@ function CardContainer() {
       setRetryCount(0);
     } catch (err) {
       if (retryCount < 3) {
-        console.log("retryCount: ", retryCount);
+        console.log("retryCount: ", retryCount,err);
         setRetryCount(retryCount + 1); 
         fetchData(currentPage); 
       } else {
@@ -118,6 +125,12 @@ function CardContainer() {
             {selectedItem === "음식" && (
                ('PRDLST_REPORT_NO' in product) && (
                 <FoodCard key={product.PRDLST_REPORT_NO} product={product} />
+              )
+            )}
+
+            {selectedItem === "의약품" && (
+               ('ITEM_SEQ' in product) && (
+                <MedicineCard key={product.ITEM_SEQ} product={product} />
               )
             )}
           </>

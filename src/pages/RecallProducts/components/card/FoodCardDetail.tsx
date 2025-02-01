@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { FoodRecallInfo } from "../../types/FoodRecallInfo";
 import CardDetail from "./Base/CardDetail";
 
