@@ -13,6 +13,8 @@ import { getMedicineNoticeInfo } from '../apis/getMedicineRecallInfoApi';
 import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
 import MedicineCard from './card/MedicineCard';
 
+
+
 function CardContainer() {
   const [productData, setProductData] = useState<(FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo)[] >([]); // 제품 데이터 타입 명시
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
@@ -60,9 +62,6 @@ function CardContainer() {
         data = await getMedicineNoticeInfo(currentPage, searchString);
         filteredData= data;
         console.log(data);
-      }else {
-        data = await getFoodRecallInfo(currentPage, searchString);
-        filteredData = data; // 기본값
       }
 
       if (filteredData.length === 0) {
@@ -72,13 +71,14 @@ function CardContainer() {
       }
       setLoading(false);
       setRetryCount(0);
+
     } catch (err) {
       if (retryCount < 3) {
         console.log("retryCount: ", retryCount,err);
         setRetryCount(retryCount + 1); 
         fetchData(currentPage); 
       } else {
-        setError("데이터를 불러오는 중 오류가 발생했습니다. " + err);
+        setError("데이터를 불러오는 중 오류가 발생했습니다. ");
         setLoading(false);
       }
     }
@@ -107,9 +107,9 @@ function CardContainer() {
   }
   
   return (
-    <div className="flex w-full">
+    <div className="flex">
       <InfiniteScroll
-        className="max-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20"
+        className="min-h-screen h-screen min-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5  rounded-md p-6 pt-20"
         dataLength={productData.length}
         next={() => setPage(page + 1)}
         hasMore={hasMore && !searchString}

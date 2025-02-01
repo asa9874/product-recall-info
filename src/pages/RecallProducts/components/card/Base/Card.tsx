@@ -19,7 +19,7 @@ function Card({ setOpenModal, children, openModal, CardDetail, product }: CardPr
     <>
     <motion.div
         ref={ref}
-        className="bg-zinc-50 dark:bg-zinc-900 w-full h-90 p-4 rounded-lg shadow-md flex justify-center flex-col space-y-2 hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer"
+        className="bg-zinc-50 dark:bg-zinc-900 w-full h-80 p-4 rounded-lg shadow-md flex justify-center flex-col space-y-2 hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer"
         onClick={() => setOpenModal(true)}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 10 }}

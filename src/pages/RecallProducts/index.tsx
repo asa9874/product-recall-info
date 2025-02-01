@@ -6,7 +6,7 @@ import ScrollToTopButton from "./components/ScrollToTopButton"
 
 function RecallProducts() {
   return (
-    <div className="bg-neutral-300">
+    <div className="bg-neutral-200 dark:bg-neutral-800">
       <Headers />
       <CardContainer />
       <ScrollToTopButton/>

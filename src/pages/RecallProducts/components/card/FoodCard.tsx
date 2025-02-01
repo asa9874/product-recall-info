@@ -10,10 +10,9 @@ interface CardProps {
 function FoodCard({ product }: CardProps) {
   const { CRET_DTM, RTRVL_GRDCD_NM, IMG_FILE_PATH, PRDTNM, RTRVLPRVNS } = product;
   const [hasError, setHasError] = useState(false);
-  const [openModal, setOpenModal] = useState(false); // 모달 열림/닫힘 상태 관리
+  const [openModal, setOpenModal] = useState(false); 
 
 
-//TODO: 카드 베이스 UI 구현
   return (
     <Card
       openModal={openModal}
