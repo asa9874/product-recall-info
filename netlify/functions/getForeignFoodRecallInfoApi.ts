@@ -8,12 +8,12 @@ export const getForeignFoodNoticeInfo = async (page: number,searchString: string
 
   const url1 =
     "https://openapi.foodsafetykorea.go.kr/api/" +
-    import.meta.env.VITE_FOREIGN_FOOD_API_KEY +
+    process.env.VITE_FOREIGN_FOOD_API_KEY +
     `/I2810/json/${1 + page * CALLCOUNT}/${30 + page * CALLCOUNT}`;
 
   const url2 =
     "https://openapi.foodsafetykorea.go.kr/api/" +
-    import.meta.env.VITE_FOREIGN_FOOD_API_KEY +
+    process.env.VITE_FOREIGN_FOOD_API_KEY +
     `/I2810/json/1/500`;
 
   // searchString이 존재하면 url2, 없으면 url1

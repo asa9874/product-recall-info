@@ -6,7 +6,7 @@ export const getFoodRecallInfo = async (page: number,searchString:string): Promi
   console.log("음식",page)
   const url1 =
     "https://openapi.foodsafetykorea.go.kr/api/" +
-    import.meta.env.VITE_FOOD_API_KEY +
+    process.env.VITE_FOOD_API_KEY +
     `/I0490/json/${1+page*CALLCOUNT}/${30+page*CALLCOUNT}`;
 
 
