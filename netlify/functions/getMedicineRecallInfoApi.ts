@@ -9,7 +9,9 @@ export const getMedicineNoticeInfo = async (page: number, searchString: string):
   const BASE_URL = "https://apis.data.go.kr/1471000/MdcinRtrvlSleStpgeInfoService03/getMdcinRtrvlSleStpgelList02";
 
   const API_KEY = process.env.VITE_MEDICINE_API_KEY;
-
+  if (!API_KEY) {
+    throw new Error('API_KEY is missing!');
+  }
   const params = new URLSearchParams({
     serviceKey: API_KEY,
     type: "json",
