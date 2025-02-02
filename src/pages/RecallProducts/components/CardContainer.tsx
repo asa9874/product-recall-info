@@ -1,15 +1,15 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { getFoodRecallInfo } from "../../../../netlify/functions/getFoodRecallInfoApi";
+import { getFoodRecallInfo } from "../apis/getFoodRecallInfoApi";
 import { useStore } from '../context';
 import { FoodRecallInfo } from "../types/FoodRecallInfo";
 import FoodCard from "./card/FoodCard";
 import LoadingCard from "./card/LoadingCard";
-import { getForeignFoodNoticeInfo } from '../../../../netlify/functions/getForeignFoodRecallInfoApi';
+import { getForeignFoodNoticeInfo } from '../apis/getForeignFoodRecallInfoApi';
 import { ForeignFoodRecallInfo } from '../types/ForeignFoodRecallInfo';
 import ForeignFoodCard from './card/ForeignFoodCard';
-import { getMedicineNoticeInfo } from '../../../../netlify/functions/getMedicineRecallInfoApi';
+import { getMedicineNoticeInfo } from '../apis/getMedicineRecallInfoApi';
 import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
 import MedicineCard from './card/MedicineCard';
 
