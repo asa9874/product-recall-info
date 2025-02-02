@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')!).render(
   <Router basename="">
     <Routes>
       <Route path="/" element={<RecallProducts />} />
-      <Route path="/1" element={<Nutrients />} />
+      <Route path="/Nutrients" element={<Nutrients />} />
     </Routes>
   </Router>
 )
