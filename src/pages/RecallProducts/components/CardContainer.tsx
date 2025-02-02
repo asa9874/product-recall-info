@@ -12,6 +12,8 @@ import ForeignFoodCard from './card/ForeignFoodCard';
 import { getMedicineNoticeInfo } from '../apis/getMedicineRecallInfoApi';
 import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
 import MedicineCard from './card/MedicineCard';
+import Searchbar from './Searchbar';
+import Body from '../../Base/Body';
 
 
 
@@ -107,9 +109,10 @@ function CardContainer() {
   }
   
   return (
-    <div className="flex">
+    <Body>
+      <Searchbar />
       <InfiniteScroll
-        className="min-h-screen h-screen min-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5  rounded-md p-6 pt-20"
+        className=" min-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5  rounded-md p-6"
         dataLength={productData.length}
         next={() => setPage(page + 1)}
         hasMore={hasMore && !searchString}
@@ -127,7 +130,7 @@ function CardContainer() {
           </>
         ))}
       </InfiniteScroll>
-    </div>
+    </Body>
   );
   
 }
