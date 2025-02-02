@@ -2,26 +2,14 @@
 import axios from 'axios';
 import { FoodRecallInfo } from '../types/FoodRecallInfo';
 
-const CALLCOUNT=30;
 export const getFoodRecallInfo = async (page: number,searchString:string): Promise<FoodRecallInfo[]> => {
-  console.log("음식",page)
-  const url1 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
-    import.meta.env.VITE_FOOD_API_KEY +
-    `/I0490/json/${1+page*CALLCOUNT}/${30+page*CALLCOUNT}`;
-
-
-  const url2 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
-    import.meta.env.VITE_FOOD_API_KEY +
-    `/I0490/json/1/500`;
-
-  // searchString이 존재하면 url2, 없으면 url1
-  const url = searchString ? url2 : url1;
-
   try {
-    const response = await axios.get(url);
-    const items = response.data.I0490.row;
+    const response = await axios.post('/.netlify/functions/getFoodRecallInfoApi', {
+      page,
+      searchString,
+    });
+
+    const items = response.data;
 
     if (!Array.isArray(items)) {
       return [];
