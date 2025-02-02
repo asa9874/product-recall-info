@@ -10,6 +10,4 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
-  base: '/product-recall-info/',
- 
 });

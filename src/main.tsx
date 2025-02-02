@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 createRoot(document.getElementById('root')!).render(
-  <Router basename="/product-recall-info">
+  <Router basename="">
     <Routes>
       <Route path="/" element={<RecallProducts />} />
     </Routes>
