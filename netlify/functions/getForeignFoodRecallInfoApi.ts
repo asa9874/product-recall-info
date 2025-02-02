@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import axios from 'axios';
 import { ForeignFoodRecallInfo } from '../../src/pages/RecallProducts/types/ForeignFoodRecallInfo';
 
