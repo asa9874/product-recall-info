@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ForeignFoodRecallInfo } from '../types/ForeignFoodRecallInfo';
+import { ForeignFoodRecallInfo } from '../../src/pages/RecallProducts/types/ForeignFoodRecallInfo';
 
 const CALLCOUNT = 30;
 

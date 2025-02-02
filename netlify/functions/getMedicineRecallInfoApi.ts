@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
+import { MedicineRecallInfo } from '../../src/pages/RecallProducts/types/MedicineRecallInfo';
 
 
 export const getMedicineNoticeInfo = async (page: number, searchString: string): Promise<MedicineRecallInfo[]> => {

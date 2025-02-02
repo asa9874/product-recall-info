@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FoodRecallInfo } from '../types/FoodRecallInfo';
+import { FoodRecallInfo } from '../../src/pages/RecallProducts/types/FoodRecallInfo';
 
 const CALLCOUNT=30;
 export const getFoodRecallInfo = async (page: number,searchString:string): Promise<FoodRecallInfo[]> => {
