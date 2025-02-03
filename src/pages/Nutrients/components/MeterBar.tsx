@@ -14,7 +14,7 @@ function MeterBar({ now, max,name }: { now: number; max: number; name: string })
       <span className="text-sm font-bold mt-5">
         {`${name}: ${now} / ${max}`}
       </span>
-      <div className="w-full h-6 bg-gray-600 rounded-lg overflow-hidden bg-opacity-50">
+      <div className="w-full h-3 min-h-3 bg-gray-600 rounded-lg overflow-hidden bg-opacity-50">
         <motion.div
           className={`h-full ${getHpColor()}`} 
           initial={{ width: "100%" }}

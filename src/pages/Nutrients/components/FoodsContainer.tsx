@@ -6,7 +6,7 @@ function FoodsContainer() {
     getFoodNutrient(0,"");
   }, []);
   return (
-    <div className="flex flex-col w-1/3 bg-white h-full rounded-xl p-5 shadow-xl dark:bg-gray-800">
+    <div className="flex flex-col w-2/4 bg-white h-full rounded-xl p-5 shadow-xl dark:bg-gray-800">
         <span className="text-xl font-bold ">음식</span>
     </div>
   );
