@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CardDetail from "./Base/CardDetail";
+import CardDetail from "../Base/CardDetail";
 import { MedicineRecallInfo } from "../../types/MedicineRecallInfo";
 
 interface CardDetailProps {

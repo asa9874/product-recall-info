@@ -1,12 +1,29 @@
-import Body from "../../Base/Body";
+import Body from "../../layout/Body";
+import MeterBar from "./MeterBar";
 
-function NutrientsBody(){
-    return(
-    <Body>
-        <meter value="60" min="0" max="100">60%</meter>
+const NutrientsBody = () => {
+
+  return (
+    <Body pt={20}>
+      <div className="flex gap-8 p-10 h-full">
+        <div className="flex flex-col gap-4 w-1/3 bg-black h-full rounded-xl p-5">
+          <MeterBar now={80} max={100} />
+          <MeterBar now={10} max={100} />
+          <MeterBar now={20} max={100} />
+        </div>
+        <div className="flex flex-col gap-4 w-1/3 bg-black h-full rounded-xl p-5">
+          <MeterBar now={80} max={100} />
+          <MeterBar now={10} max={100} />
+          <MeterBar now={20} max={100} />
+        </div>
+        <div className="flex flex-col gap-4 w-1/3 bg-black h-full rounded-xl p-5">
+          <MeterBar now={80} max={100} />
+          <MeterBar now={10} max={100} />
+          <MeterBar now={20} max={100} />
+        </div>
+      </div>
     </Body>
-    )
-}
-
+  );
+};
 
 export default NutrientsBody;

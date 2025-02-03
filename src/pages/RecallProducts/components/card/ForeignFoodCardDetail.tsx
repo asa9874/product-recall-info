@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ForeignFoodRecallInfo } from "../../types/ForeignFoodRecallInfo";
-import CardDetail from "./Base/CardDetail";
+import CardDetail from "../Base/CardDetail";
 interface CardDetailProps {
   product: ForeignFoodRecallInfo;
   onClose: () => void; // 모달 닫기 핸들러

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FoodRecallInfo } from "../../types/FoodRecallInfo";
-import CardDetail from "./Base/CardDetail";
+import CardDetail from "../Base/CardDetail";
 
 interface CardDetailProps {
   product: FoodRecallInfo;

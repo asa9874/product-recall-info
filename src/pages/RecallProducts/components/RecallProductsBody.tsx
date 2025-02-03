@@ -13,11 +13,11 @@ import { getMedicineNoticeInfo } from '../apis/getMedicineRecallInfoApi';
 import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
 import MedicineCard from './card/MedicineCard';
 import Searchbar from './Searchbar';
-import Body from '../../Base/Body';
+import Body from '../../layout/Body';
 
 
 
-function CardContainer() {
+function RecallProductsBody() {
   const [productData, setProductData] = useState<(FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo)[] >([]); // 제품 데이터 타입 명시
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
   const [error, setError] = useState<string | null>(null); // 에러 상태
@@ -109,10 +109,10 @@ function CardContainer() {
   }
   
   return (
-    <Body>
+    <Body pt={40}>
       <Searchbar />
       <InfiniteScroll
-        className=" min-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5  rounded-md p-6"
+        className="min-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5  rounded-md p-6"
         dataLength={productData.length}
         next={() => setPage(page + 1)}
         hasMore={hasMore && !searchString}
@@ -135,4 +135,4 @@ function CardContainer() {
   
 }
 
-export default CardContainer;
+export default RecallProductsBody;
