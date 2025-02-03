@@ -2,15 +2,16 @@ import { useState } from "react";
 import { useStore } from "../context";
 
 function Searchbar() {
-const { searchString, setSearchString } = useStore(); // zustand store에서 값 가져오기
+  const { searchString, setSearchString } = useStore(); // zustand store에서 값 가져오기
   const [inputValue, setInputValue] = useState(searchString); // 입력값 state 관리
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearchString(inputValue); // 검색어를 zustand store에 저장
   };
+  
   return (
-    <form className="max-w-md mx-auto w-full pt-20" onSubmit={handleSearch}>
+    <form className="max-w-md mx-auto w-full pt-20 border-2 border-gray-200 rounded-lg" onSubmit={handleSearch}>
           <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg

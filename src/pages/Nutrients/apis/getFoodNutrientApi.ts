@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NutrientsInfo } from '../types/NutrientsInfo';
 
 export const getFoodNutrient = async (page: number, searchString: string): Promise<NutrientsInfo[]> => {
-  console.log("의약품", page);
+  console.log("영양소", page, searchString);
 
   const BASE_URL = "https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01";
   const API_KEY = import.meta.env.VITE_NUTRIENTS_API_KEY;
