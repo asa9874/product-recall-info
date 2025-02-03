@@ -3,12 +3,12 @@ import MeterBar from './MeterBar';
 
 interface Nutrient {
     name: string;
-    value: number; // 영양소 값 (예: 80, 10, 20 등)
-    max: number;   // 최대값 (예: 100)
+    value: number;  
+    max: number;    
 }
 
 function NutrientsBarsContainer() {
-    // NutrientsInfo 인터페이스를 기반으로 영양소 데이터 설정
+    
     const [nutrients, setNutrients] = useState<Nutrient[]>([
         { name: '에너지 (kcal)', value: 0, max: 2600 },
         { name: '단백질 (g)', value: 0, max: 65 },
@@ -38,7 +38,6 @@ function NutrientsBarsContainer() {
     return (
         <div className="flex flex-col w-1/4 bg-white h-full rounded-xl p-5 shadow-xl dark:bg-gray-800 dark:text-white overflow-y-auto">
             <span className="text-xl font-bold">영양소</span>
-            {/* nutrients 배열을 순회하며 MeterBar 컴포넌트 생성 */}
             {nutrients.map((nutrient, index) => (
                 <MeterBar key={index} now={nutrient.value} max={nutrient.max} name={nutrient.name} />
             ))}
