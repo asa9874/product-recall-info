@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-function MeterBar({ now, max }: { now: number; max: number }) {
+function MeterBar({ now, max,name }: { now: number; max: number; name: string }) {
   const Percent = (now / max) * 100;
 
   const getHpColor = () => {
@@ -10,14 +10,19 @@ function MeterBar({ now, max }: { now: number; max: number }) {
   };
 
   return (
-    <div className="w-full h-6 bg-gray-600 rounded-lg overflow-hidden">
-      <motion.div
-        className={`h-full ${getHpColor()}`} // 색상 동적 적용
-        initial={{ width: "100%" }}
-        animate={{ width: `${Percent}%` }} // 체력 값에 따라 길이 변경
-        transition={{ duration: 0.3, ease: "easeInOut" }} // 부드러운 애니메이션
-      />
-    </div>
+    <>
+      <span className="text-sm font-bold mt-5">
+        {`${name}: ${now} / ${max}`}
+      </span>
+      <div className="w-full h-6 bg-gray-600 rounded-lg overflow-hidden bg-opacity-50">
+        <motion.div
+          className={`h-full ${getHpColor()}`} 
+          initial={{ width: "100%" }}
+          animate={{ width: `${Percent}%` }} 
+          transition={{ duration: 0.3, ease: "easeInOut" }} 
+        />
+      </div>
+    </>
   );
 }
 
