@@ -1,7 +1,7 @@
 // MedicineCard.tsx
 import { useState } from "react";
 import MedicineCardDetail from "./MedicineCardDetail"; 
-import Card from "./Base/Card"; 
+import Card from "../Base/Card"; 
 import { MedicineRecallInfo } from "../../types/MedicineRecallInfo";
 
 interface CardProps {

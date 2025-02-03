@@ -28,7 +28,7 @@ function CollapseMenu() {
     <motion.div
       id="collapseMenu"
       initial={{ y: 0, opacity: 1 }}
-      animate={{ y: visible ? 86 : -100, opacity: visible ? 1 : 0 }}
+      animate={{ y: visible ? 72 : -100, opacity: visible ? 1 : 0 }}
       transition={{ type: "spring", stiffness: 200, damping: 30 }}
       className={`fixed top-0 left-0 w-full shadow-md rounded-b-xl z-30 h-14 flex items-center justify-center
         bg-amber-50 dark:bg-gray-800`} // 다크 모드 배경 추가

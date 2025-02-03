@@ -1,10 +1,8 @@
-import { useState } from 'react';
-import { useStore } from '../context';
-import CollapseMenu from './CollapseMenu';
-import DarkModeToggle from './DarkModeToggle';
+import { useState } from "react";
+import { useStore } from "../context";
 
-function Headers() {
-  const { searchString, setSearchString } = useStore(); // zustand store에서 값 가져오기
+function Searchbar() {
+const { searchString, setSearchString } = useStore(); // zustand store에서 값 가져오기
   const [inputValue, setInputValue] = useState(searchString); // 입력값 state 관리
 
   const handleSearch = (e: React.FormEvent) => {
@@ -12,15 +10,7 @@ function Headers() {
     setSearchString(inputValue); // 검색어를 zustand store에 저장
   };
   return (
-    <div className='sticky top-0 z-50'>
-      <header className='flex shadow-[0px_10px_16px_rgba(17,_17,_26,_0.1)] dark:shadow-gray-700 py-4 px-4 sm:px-6 bg-white dark:bg-gray-900 font-sans min-h-[70px] tracking-wide relative z-50 '>
-        <div className='flex items-center hidden sm:flex'>
-          <img src='/logo.png' alt='logo' className='w-10 h-10' />
-          <span className="hidden md:flex items-center text-lg font-semibold text-gray-700 dark:text-gray-100 tracking-wide">
-            제품회수정보
-          </span>
-        </div>
-        <form className="max-w-md mx-auto w-full" onSubmit={handleSearch}>
+    <form className="max-w-md mx-auto w-full pt-20" onSubmit={handleSearch}>
           <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
@@ -57,12 +47,7 @@ function Headers() {
             </button>
           </div>
         </form>
-        <DarkModeToggle />
-      </header>
-      <CollapseMenu />
-    </div>
-
-  )
+  );
 }
 
-export default Headers
+export default Searchbar;
