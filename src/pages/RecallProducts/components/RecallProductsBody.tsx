@@ -13,7 +13,7 @@ import { getMedicineNoticeInfo } from '../apis/getMedicineRecallInfoApi';
 import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
 import MedicineCard from './card/MedicineCard';
 import Searchbar from './Searchbar';
-import Body from '../../layout/Body';
+import Body from '../../../layout/Body';
 
 
 
@@ -63,7 +63,6 @@ function RecallProductsBody() {
       }else if (selectedItem === "의약품") {
         data = await getMedicineNoticeInfo(currentPage, searchString);
         filteredData= data;
-        console.log(data);
       }
 
       if (filteredData.length === 0) {

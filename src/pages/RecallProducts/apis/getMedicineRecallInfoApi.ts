@@ -26,7 +26,6 @@ export const getMedicineNoticeInfo = async (page: number, searchString: string):
   try {
     const response = await axios.get(url);
     const items = response.data.body.items;
-    console.log(items);
     if (!Array.isArray(items)) {
       return [];
     }

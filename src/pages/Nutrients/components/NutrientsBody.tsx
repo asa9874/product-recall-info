@@ -1,4 +1,4 @@
-import Body from "../../layout/Body";
+import Body from "../../../layout/Body";
 import MeterBar from "./MeterBar";
 
 const NutrientsBody = () => {
