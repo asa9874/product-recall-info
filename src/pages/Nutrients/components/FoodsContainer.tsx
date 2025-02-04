@@ -42,7 +42,7 @@ function FoodsContainer({ addFood }: Props) {
               placeholder="음식,제품이름을 입력해주세요"
             />
         </form>
-        <div className="flex flex-col mt-2 gap-2">
+        <div className="grid xl:grid-cols-4 md:grid-cols-5 grid-cols-4 gap-4 mt-4">
           {FoodNutrients.map((food, index) => (
             <Food key={index} food={food} action={addFood} Type='ADD'/>
           ))}
