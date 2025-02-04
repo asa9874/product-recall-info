@@ -76,7 +76,7 @@ const NutrientsBody = () => {
 
   return (
     <Body pt={20}>
-      <div className="flex gap-8 p-10 h-full">
+      <div className="flex gap-4 xl:gap-8 flex-grow p-3 xl:p-10 h-full flex-col xl:flex-row">
         <NutrientsBarsContainer />
         <FoodsContainer addFood={addFood} />
         <SeletedFoodContainer deleteFood={deleteFood} foods={state.foods} />

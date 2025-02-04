@@ -31,7 +31,7 @@ function FoodsContainer({ addFood }: Props) {
   }
 
   return (
-    <div className="flex flex-col w-2/4 bg-white h-full rounded-xl p-5 shadow-xl dark:bg-gray-800 overflow-y-auto dark:text-white">
+    <div className="flex flex-col xl:w-2/4 bg-white h-1/4 xl:h-full rounded-xl p-5 shadow-xl dark:bg-gray-800 overflow-y-auto dark:text-white">
         <span className="text-xl font-bold ">음식</span>
         <form onSubmit={handleSearch}>
             <input 

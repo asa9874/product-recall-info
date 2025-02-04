@@ -42,11 +42,13 @@ function NutrientsBarsContainer() {
     }, [nutrientStore]);
 
     return (
-        <div className="flex flex-col w-1/4 bg-white h-full rounded-xl p-5 shadow-xl dark:bg-gray-800 dark:text-white overflow-y-auto">
+        <div className="flex flex-col xl:w-1/4 h-1/4 xl:h-full bg-white rounded-xl p-5 shadow-xl dark:bg-gray-800 dark:text-white overflow-y-auto">
             <span className="text-xl font-bold">영양소</span>
-            {nutrients.map((nutrient, index) => (
-                <MeterBar key={index} now={nutrient.value} max={nutrient.max} name={nutrient.name} />
-            ))}
+            <div className="grid xl:grid-cols-2 md:grid-cols-5 gap-4 mt-4">
+                {nutrients.map((nutrient, index) => (
+                    <MeterBar key={index} now={nutrient.value} max={nutrient.max} name={nutrient.name} />
+                ))}
+            </div>
         </div>
     );
 }

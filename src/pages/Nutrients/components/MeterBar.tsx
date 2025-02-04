@@ -10,11 +10,11 @@ function MeterBar({ now, max,name }: { now: number; max: number; name: string })
   };
 
   return (
-    <>
-      <span className="text-sm font-bold mt-5">
+    <div className="flex flex-col mt-2 w-full">
+      <span className="text-xs font-bold">
         {`${name}: ${now} / ${max}`}
       </span>
-      <div className="w-full h-3 min-h-3 bg-gray-600 rounded-lg overflow-hidden bg-opacity-50">
+      <div className="w-full min-h-1 xl:min-h-3 bg-gray-600 rounded-lg overflow-hidden bg-opacity-50">
         <motion.div
           className={`h-full ${getColor()}`} 
           initial={{ width: "100%" }}
@@ -22,7 +22,7 @@ function MeterBar({ now, max,name }: { now: number; max: number; name: string })
           transition={{ duration: 0.3, ease: "easeInOut" }} 
         />
       </div>
-    </>
+    </div>
   );
 }
 
