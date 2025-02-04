@@ -1,4 +1,5 @@
-export interface NutrientsInfo {
+export interface FoodNutrients {
+    id:                           string;  // 고유 ID
     NUM:                          number;  // 번호
     FOOD_CD:                      string;  // 식품코드
     FOOD_NM_KR:                   string;  // 식품명

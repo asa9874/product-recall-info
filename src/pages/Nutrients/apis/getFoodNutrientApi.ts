@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { NutrientsInfo } from '../types/NutrientsInfo';
+import { FoodNutrients } from '../types/FoodNutrients';
 
-export const getFoodNutrient = async (page: number, searchString: string): Promise<NutrientsInfo[]> => {
+export const getFoodNutrient = async (page: number, searchString: string): Promise<FoodNutrients[]> => {
   console.log("영양소", page, searchString);
 
   const BASE_URL = "https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo01/getFoodNtrCpntDbInq01";
@@ -32,6 +32,7 @@ export const getFoodNutrient = async (page: number, searchString: string): Promi
     return items.map((entry: any) => {
       const item = entry;
       return {
+        id:                  "",
         NUM:                 item.NUM || 0,
         FOOD_CD:             item.FOOD_CD || "",
         FOOD_NM_KR:          item.FOOD_NM_KR || "",

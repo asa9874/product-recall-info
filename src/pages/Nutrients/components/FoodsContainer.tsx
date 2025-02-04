@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { getFoodNutrient } from "../apis/getFoodNutrientApi";
 import Food from "./Food";
-import { NutrientsInfo } from "../types/NutrientsInfo";
+import { FoodNutrients } from "../types/FoodNutrients";
 
-function FoodsContainer() {
-  const [FoodNutrients, setFoodNutrients] = useState<(NutrientsInfo )[] >([]); // 제품 데이터 타입 명시
+interface Props {
+  addFood: (newFood: FoodNutrients) => void;
+}
+
+
+function FoodsContainer({ addFood }: Props) {
+  const [FoodNutrients, setFoodNutrients] = useState<(FoodNutrients )[] >([]); // 제품 데이터 타입 명시
   const [ searchString, setSearchString ] = useState(""); // zustand store에서 값 가져오기
   const [inputValue, setInputValue] = useState(searchString); // 입력값 state 관리
   useEffect(() => {
@@ -39,7 +44,7 @@ function FoodsContainer() {
         </form>
         <div className="flex flex-col mt-2 gap-2">
           {FoodNutrients.map((food, index) => (
-            <Food key={index} food={food} />
+            <Food key={index} food={food} action={addFood} Type='ADD'/>
           ))}
         </div>
     </div>
