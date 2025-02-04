@@ -60,7 +60,7 @@ interface FoodNutrientsItem {
   VITAMIN_D3_UG:                number;  // 비타민 D3(μg)
 }
 
-export const getFoodNutrient: Handler = async (event) => {
+export const handler: Handler = async (event) => {
   const { page, searchString }: { page: number; searchString: string } = JSON.parse(event.body || '{}'); // event에서 파라미터 추출
   console.log("영양소", page, searchString);
 
