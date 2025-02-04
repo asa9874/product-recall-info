@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface NutrientState {
+export interface NutrientState {
   ENERGY_KCAL: number;             // 에너지 (kcal)
   PROTEIN_G: number;               // 단백질 (g)
   FAT_G: number;                   // 지방 (g)
@@ -26,6 +26,8 @@ interface NutrientState {
   DIETARY_FIBER_G: number;         // 식이섬유 (g)
   setNutrient: (key: keyof NutrientState, value: number) => void;
 }
+
+
 
 // zustand store
 const useNutrientStore = create<NutrientState>((set) => ({
