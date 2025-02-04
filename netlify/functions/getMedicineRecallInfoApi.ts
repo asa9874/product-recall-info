@@ -45,8 +45,6 @@ export const handler: Handler = async (event) => {
     const response = await axios.get(url);
     const items = response.data.body.items;
 
-    console.log(items);
-
     if (!Array.isArray(items)) {
       return {
         statusCode: 200,
