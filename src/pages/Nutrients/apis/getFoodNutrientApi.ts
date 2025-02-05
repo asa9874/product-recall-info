@@ -11,7 +11,7 @@ export const getFoodNutrient = async (page: number, searchString: string): Promi
     serviceKey: API_KEY,
     type: "json",
     pageNo: String(page + 1),
-    numOfRows: "30",
+    numOfRows: "50",
   });
 
   // 검색어가 존재하면 추가
