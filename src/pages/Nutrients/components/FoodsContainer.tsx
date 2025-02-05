@@ -12,7 +12,6 @@ function FoodsContainer({ addFood }: Props) {
   const [foodNutrients, setFoodNutrients] = useState<FoodNutrients[]>([]);
   const [searchString, setSearchString] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -34,7 +33,6 @@ function FoodsContainer({ addFood }: Props) {
 
   const fetchFoodNutrient = async (currentPage: number, searchString: string) => {
     if (!hasMore) return;
-    setLoading(true);
     setError(null);
     try {
       const data = await getFoodNutrient(currentPage, searchString);
@@ -47,7 +45,6 @@ function FoodsContainer({ addFood }: Props) {
       setError("데이터를 불러오는 중 오류가 발생했습니다.");
       console.error(error);
     } finally {
-      setLoading(false);
     }
   };
 
@@ -63,7 +60,6 @@ function FoodsContainer({ addFood }: Props) {
           placeholder="음식, 제품 이름을 입력해주세요"
         />
       </form>
-      {loading && <p className="mt-4 text-center text-red-500">로딩중</p>}
       {error && <p className="mt-4 text-center text-red-500">{error}</p>}
       <div id="scrollableDiv" className="h-full overflow-y-auto">
         <InfiniteScroll
