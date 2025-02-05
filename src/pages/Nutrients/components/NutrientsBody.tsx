@@ -31,12 +31,12 @@ export const updateNutrients = (food: FoodNutrients, operation: 'add' | 'delete'
       let updatedValue = typeof value === 'string' ? parseFloat(value) : value;
 
       if (operation === 'delete') {
-        updatedValue = parseFloat((currentValue - updatedValue).toFixed(1));
+        updatedValue = (currentValue - updatedValue);
       } else if (operation === 'add') {
-        updatedValue = parseFloat((currentValue + updatedValue).toFixed(1));
+        updatedValue = (currentValue + updatedValue);
       }
 
-      useNutrientStore.getState().setNutrient(key, updatedValue); // 상태 갱신
+      useNutrientStore.getState().setNutrient(key, parseFloat(updatedValue.toFixed(2))); // 상태 갱신
     }
   });
 };
@@ -46,7 +46,8 @@ const NutrientsBody = () => {
   function reducer(state: State, action: Action): State {
     switch (action.type) {
       case 'ADD':
-        if (action.newFood) {
+        if (action.newFood && !state.foods.some(food => food.NUM === action.newFood?.NUM)) {
+          updateNutrients(action.newFood, 'add');
           return { ...state, foods: [...state.foods, action.newFood] };
         }
         return state;
@@ -66,7 +67,6 @@ const NutrientsBody = () => {
 
   const addFood = (newFood: FoodNutrients) => {
     dispatch({ type: 'ADD', newFood: { ...newFood, id: crypto.randomUUID() } });
-    updateNutrients(newFood, 'add');
   };
 
   const deleteFood = (food: FoodNutrients) => {
