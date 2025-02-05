@@ -63,8 +63,8 @@ function FoodsContainer({ addFood }: Props) {
           placeholder="음식, 제품 이름을 입력해주세요"
         />
       </form>
+      {loading && <p className="mt-4 text-center text-red-500">로딩중</p>}
       {error && <p className="mt-4 text-center text-red-500">{error}</p>}
-      {loading && <p className="mt-4 text-center text-red-500">{error}</p>}
       <div id="scrollableDiv" className="h-full overflow-y-auto">
         <InfiniteScroll
           dataLength={foodNutrients.length}
