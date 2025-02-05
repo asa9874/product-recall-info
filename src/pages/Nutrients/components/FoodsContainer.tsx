@@ -52,7 +52,7 @@ function FoodsContainer({ addFood }: Props) {
   };
 
   return (
-    <div className="flex flex-col xl:w-2/4 bg-white h-1/4 xl:h-full rounded-xl p-5 shadow-xl dark:bg-gray-800 dark:text-white">
+    <div className="flex flex-col xl:w-2/4 bg-white h-[500px] xl:h-full rounded-xl p-5 shadow-xl dark:bg-gray-800 dark:text-white">
       <span className="text-xl font-bold">음식</span>
       <form onSubmit={handleSearch} className="mt-2">
         <input
@@ -73,7 +73,7 @@ function FoodsContainer({ addFood }: Props) {
           endMessage={<p className="mt-4 text-center">더 이상 데이터가 없습니다.</p>}
           scrollableTarget="scrollableDiv"
         >
-          <div className="grid xl:grid-cols-4 md:grid-cols-5 grid-cols-4 gap-4 mt-4">
+          <div className="grid xl:grid-cols-4 md:grid-cols-5 sm:grid-cols-3 grid-cols-2  gap-4 mt-4">
             {foodNutrients.map((food) => (
               <Food key={food.id} food={food} action={addFood} Type="ADD" />
             ))}

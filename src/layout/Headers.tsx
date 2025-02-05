@@ -22,7 +22,7 @@ function Headers() {
             <Link
               key={item.path}
               to={item.path}
-              className={`relative text-base font-semibold px-4 py-2 transition-colors duration-200 ${
+              className={`relative text-xs md:text-base font-semibold px-4 py-2 transition-colors duration-200 ${
                 location.pathname === item.path
                   ? "text-white"
                   : "text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
