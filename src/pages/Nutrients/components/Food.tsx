@@ -30,7 +30,7 @@ function Food({ food, action, Type }: FoodProps) {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="relative flex flex-col bg-white shadow-lg rounded-2xl p-4 border dark:bg-gray-700"
     >
-      <div className="text-m font-semibold text-gray-900 d dark:text-gray-100 min-h-14">{food.FOOD_NM_KR}</div>
+      <div className="text- xl:text-m font-semibold text-gray-900 d dark:text-gray-100 xl:min-h-14">{food.FOOD_NM_KR}</div>
       <div className="text-xs text-gray-500 tracking-wide mt-1 dark:text-gray-300 min-h-4">
         {food.SERVING_SIZE && <>{food.SERVING_SIZE}당 {food.ENERGY_KCAL} 칼로리</>}
       </div>

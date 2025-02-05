@@ -7,7 +7,7 @@ interface BodyProps {
 
 function Body({children, pt}: BodyProps) {
   return (
-    <div className={`flex flex-col pt-${pt} min-h-screen h-screen`}>
+    <div className={`flex flex-col pt-${pt} min-h-screen xl:h-screen`}>
       {children}
     </div>
   );
