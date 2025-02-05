@@ -9,9 +9,10 @@ interface Props {
 
 
 function FoodsContainer({ addFood }: Props) {
-  const [FoodNutrients, setFoodNutrients] = useState<(FoodNutrients )[] >([]); // 제품 데이터 타입 명시
-  const [ searchString, setSearchString ] = useState(""); // zustand store에서 값 가져오기
-  const [inputValue, setInputValue] = useState(searchString); // 입력값 state 관리
+  const [FoodNutrients, setFoodNutrients] = useState<(FoodNutrients )[] >([]);  
+  const [ searchString, setSearchString ] = useState(""); 
+  const [inputValue, setInputValue] = useState(searchString);  
+  
   useEffect(() => {
     fetchFoodNutrient(0, searchString);
   }, [searchString]);
@@ -43,8 +44,8 @@ function FoodsContainer({ addFood }: Props) {
             />
         </form>
         <div className="grid xl:grid-cols-4 md:grid-cols-5 grid-cols-4 gap-4 mt-4">
-          {FoodNutrients.map((food, index) => (
-            <Food key={index} food={food} action={addFood} Type='ADD'/>
+          {FoodNutrients.map((food) => (
+            <Food key={food.id} food={food} action={addFood} Type='ADD'/>
           ))}
         </div>
     </div>
