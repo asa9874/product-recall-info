@@ -64,6 +64,7 @@ function FoodsContainer({ addFood }: Props) {
         />
       </form>
       {error && <p className="mt-4 text-center text-red-500">{error}</p>}
+      {loading && <p className="mt-4 text-center text-red-500">{error}</p>}
       <div id="scrollableDiv" className="h-full overflow-y-auto">
         <InfiniteScroll
           dataLength={foodNutrients.length}
