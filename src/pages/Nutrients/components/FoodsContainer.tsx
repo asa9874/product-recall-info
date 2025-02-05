@@ -61,7 +61,7 @@ function FoodsContainer({ addFood }: Props) {
         />
       </form>
       {error && <p className="mt-4 text-center text-red-500">{error}</p>}
-      <div id="scrollableDiv" className="h-full overflow-y-auto">
+      <div id="scrollableDiv" className="h-screen overflow-y-auto">
         <InfiniteScroll
           dataLength={foodNutrients.length}
           next={() => setPage((prev) => prev + 1)}
@@ -69,6 +69,7 @@ function FoodsContainer({ addFood }: Props) {
           loader={<p className="mt-4 text-center">로딩 중...</p>}
           endMessage={<p className="mt-4 text-center">더 이상 데이터가 없습니다.</p>}
           scrollableTarget="scrollableDiv"
+          className="p-2"
         >
           <div className="grid xl:grid-cols-4 md:grid-cols-5 sm:grid-cols-3 grid-cols-2  gap-4 mt-4">
             {foodNutrients.map((food) => (
