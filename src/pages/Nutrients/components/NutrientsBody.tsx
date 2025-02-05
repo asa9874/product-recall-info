@@ -16,6 +16,31 @@ interface State {
   foods: FoodNutrients[];
 }
 
+export const updateNutrients = (food: FoodNutrients, operation: 'add' | 'delete') => {
+  const validKeys: (keyof NutrientState)[] = [
+    'ENERGY_KCAL', 'PROTEIN_G', 'FAT_G', 'CARBOHYDRATE_G', 'CALCIUM_MG', 'IRON_MG', 'POTASSIUM_MG',
+    'SODIUM_MG', 'VITAMIN_A_UG_RAE', 'VITAMIN_C_MG', 'VITAMIN_D_UG', 'VITAMIN_B1_MG', 'VITAMIN_B2_MG',
+    'VITAMIN_B6_MG', 'VITAMIN_B12_UG', 'FOLATE_DFE_UG', 'CHOLINE_MG', 'PANTOTHENIC_ACID_MG', 'NIACIN_MG',
+    'SATURATED_FAT_G', 'CHOLESTEROL_MG', 'SUGARS_G', 'DIETARY_FIBER_G'
+  ];
+  validKeys.forEach((key) => {
+    const currentValue = useNutrientStore.getState()[key] as number;
+    const value = food[key as keyof FoodNutrients];
+
+    if (value !== undefined) {
+      let updatedValue = typeof value === 'string' ? parseFloat(value) : value;
+
+      if (operation === 'delete') {
+        updatedValue = parseFloat((currentValue - updatedValue).toFixed(1));
+      } else if (operation === 'add') {
+        updatedValue = parseFloat((currentValue + updatedValue).toFixed(1));
+      }
+
+      useNutrientStore.getState().setNutrient(key, updatedValue); // 상태 갱신
+    }
+  });
+};
+
 const NutrientsBody = () => {
   // reducer 함수 
   function reducer(state: State, action: Action): State {
@@ -36,31 +61,6 @@ const NutrientsBody = () => {
         return state;
     }
   }
-
-  const updateNutrients = (food: FoodNutrients, operation: 'add' | 'delete') => {
-    const validKeys: (keyof NutrientState)[] = [
-      'ENERGY_KCAL', 'PROTEIN_G', 'FAT_G', 'CARBOHYDRATE_G', 'CALCIUM_MG', 'IRON_MG', 'POTASSIUM_MG',
-      'SODIUM_MG', 'VITAMIN_A_UG_RAE', 'VITAMIN_C_MG', 'VITAMIN_D_UG', 'VITAMIN_B1_MG', 'VITAMIN_B2_MG',
-      'VITAMIN_B6_MG', 'VITAMIN_B12_UG', 'FOLATE_DFE_UG', 'CHOLINE_MG', 'PANTOTHENIC_ACID_MG', 'NIACIN_MG',
-      'SATURATED_FAT_G', 'CHOLESTEROL_MG', 'SUGARS_G', 'DIETARY_FIBER_G'
-    ];
-    validKeys.forEach((key) => {
-      const currentValue = useNutrientStore.getState()[key] as number;
-      const value = food[key as keyof FoodNutrients];
-
-      if (value !== undefined) {
-        let updatedValue = typeof value === 'string' ? parseFloat(value) : value;
-
-        if (operation === 'delete') {
-          updatedValue = parseFloat((currentValue - updatedValue).toFixed(1));
-        } else if (operation === 'add') {
-          updatedValue = parseFloat((currentValue + updatedValue).toFixed(1));
-        }
-
-        useNutrientStore.getState().setNutrient(key, updatedValue); // 상태 갱신
-      }
-    });
-  };
 
   const [state, dispatch] = useReducer(reducer, { foods: [] });
 

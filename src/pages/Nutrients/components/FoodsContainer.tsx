@@ -43,8 +43,8 @@ function FoodsContainer({ addFood }: Props) {
             />
         </form>
         <div className="grid xl:grid-cols-4 md:grid-cols-5 grid-cols-4 gap-4 mt-4">
-          {FoodNutrients.map((food, index) => (
-            <Food key={index} food={food} action={addFood} Type='ADD'/>
+          {FoodNutrients.map((food) => (
+            <Food key={food.id} food={food} action={addFood} Type='ADD'/>
           ))}
         </div>
     </div>

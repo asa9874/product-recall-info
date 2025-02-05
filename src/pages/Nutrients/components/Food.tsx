@@ -1,6 +1,7 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { FoodNutrients } from "../types/FoodNutrients";
 import { motion } from "framer-motion";
+import { updateNutrients } from "./NutrientsBody";
 
 interface FoodProps {
   food: FoodNutrients;
@@ -9,7 +10,18 @@ interface FoodProps {
 }
 
 function Food({ food, action, Type }: FoodProps) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+
+  const handlecount =(actionName: string) => {
+    if(actionName === 'plus') {
+      setCount(count + 1);
+      updateNutrients(food, 'add');
+    } else {
+      if(count === 1) {action(food);}
+      else updateNutrients(food, 'delete');
+      setCount(count - 1);
+    }
+  }
 
   return (
     <motion.div
@@ -24,17 +36,10 @@ function Food({ food, action, Type }: FoodProps) {
       </div>
       {Type === 'DELETE' && (
         <>
-          <button
-            onClick={() => action(food)}
-            className="absolute top-2 right-2 flex items-center justify-center w-8 h-8 rounded-full text-red-600 hover:bg-red-100 transition-all duration-300 ease-in-out"
-          >
-            X
-          </button>
-
           <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-full p-1.5 shadow-md justify-evenly">
             <motion.button
               whileTap={{ scale: 0.85 }}
-              onClick={() => setCount(prev => Math.max(prev - 1, 0))}
+              onClick={() => handlecount('minus')}
               className="w-7 h-7 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 bg-white dark:bg-gray-700 rounded-full shadow-sm transition"
             >
               -
@@ -53,7 +58,7 @@ function Food({ food, action, Type }: FoodProps) {
 
             <motion.button
               whileTap={{ scale: 0.85 }}
-              onClick={() => setCount(prev => prev + 1)}
+              onClick={() => handlecount('plus')}
               className="w-7 h-7 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-green-500 bg-white dark:bg-gray-700 rounded-full shadow-sm transition"
             >
               +
