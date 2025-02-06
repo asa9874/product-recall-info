@@ -23,7 +23,6 @@ function RecallProductsBody() {
   const [error, setError] = useState<string | null>(null); // 에러 상태
   const [hasMore, setHasMore] = useState<boolean>(true);
   const { searchString, selectedItem, page, setPage} = useStore();
-  const [retryCount, setRetryCount] = useState<number>(0); // 오류 재시도 횟수 관리
 
   //TODO: 페이지 초기화버그 수정
   useEffect(() => {
@@ -33,7 +32,6 @@ function RecallProductsBody() {
     setError(null); 
     setLoading(true);
     setHasMore(true); 
-    setRetryCount(0); 
     fetchData(0);
   }, [searchString, selectedItem]);
 
@@ -43,47 +41,40 @@ function RecallProductsBody() {
     }
   }, [page]);
 
+
   // API 데이터 가져오기
   const fetchData = async (currentPage: number) => {
-    try {
-      let data;
-      let filteredData: (FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo)[] = [];
-      // 데이터 분기점 추가
-      if (selectedItem === "해외식품") {
-        data = await getForeignFoodNoticeInfo(currentPage, searchString);
-        filteredData = searchString
-          ? data.filter((item) => item.TITL.includes(searchString)) // TITL에 searchString이 포함된 항목만
-          : data;
-      } else if (selectedItem === "음식") {
-        data = await getFoodRecallInfo(currentPage, searchString);
-        //console.log(data);
-        filteredData = searchString
-          ? data.filter((item) => item.PRDTNM.includes(searchString)) // PRDTNM에 searchString이 포함된 항목만
-          : data;
-      }else if (selectedItem === "의약품") {
-        data = await getMedicineNoticeInfo(currentPage, searchString);
-        filteredData= data;
-      }
+  try {
+    let data;
+    let filteredData: (FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo)[] = [];
 
-      if (filteredData.length === 0) {
-        setHasMore(false); // 더 이상 데이터가 없으면 종료
-      } else {
-        setProductData((prevData) => [...prevData, ...filteredData]); // 기존 데이터에 새로운 데이터를 추가
-      }
-      setLoading(false);
-      setRetryCount(0);
-
-    } catch (err) {
-      if (retryCount < 3) {
-        console.log("retryCount: ", retryCount,err);
-        setRetryCount(retryCount + 1); 
-        fetchData(currentPage); 
-      } else {
-        setError("데이터를 불러오는 중 오류가 발생했습니다. ");
-        setLoading(false);
-      }
+    if (selectedItem === "해외식품") {
+      data = await getForeignFoodNoticeInfo(currentPage, searchString);
+      filteredData = searchString
+        ? data.filter((item) => item.TITL.includes(searchString))
+        : data;
+    } else if (selectedItem === "음식") {
+      data = await getFoodRecallInfo(currentPage, searchString);
+      filteredData = searchString
+        ? data.filter((item) => item.PRDTNM.includes(searchString))
+        : data;
+    } else if (selectedItem === "의약품") {
+      data = await getMedicineNoticeInfo(currentPage, searchString);
+      filteredData = data;
     }
-  };
+
+    if (filteredData.length === 0) {
+      setHasMore(false);
+    } else {
+      setProductData((prevData) => [...prevData, ...filteredData]);
+    }
+    setLoading(false);
+
+  } catch (err) {
+      setError("데이터를 불러오는 중 오류가 발생했습니다.");
+      setLoading(false);
+  }
+};
 
   if (error) {
     return (
