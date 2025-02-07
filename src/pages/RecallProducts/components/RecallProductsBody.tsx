@@ -95,7 +95,7 @@ function RecallProductsBody() {
 
   if (loading) {
     return (
-      <div className="max-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-700 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-20">
+      <div className="max-w-screen overflow-hidden bg-neutral-200 dark:bg-neutral-700 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:pl-20 xl:pr-20 gap-5 place-items-center shadow-xl rounded-md p-6 pt-60">
         {Array.from({ length: 20 }).map((_, index) => (
           <LoadingCard key={`loading-card-${index}`} />
         ))}
