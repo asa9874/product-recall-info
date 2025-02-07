@@ -74,7 +74,7 @@ export const getFoodNutrient = async (page: number, searchString: string): Promi
       };
     });
   } catch (error) {
-    console.error("API 호출 에러:", error);
+    console.error('API 호출 에러:', error);
     throw error;
   }
 };

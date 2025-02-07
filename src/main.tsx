@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
 import './styles/index.css';
 import './styles/reset.css';
 import RecallProducts from './pages/RecallProducts';
@@ -7,14 +7,13 @@ import Nutrients from './pages/Nutrients';
 import Footer from './layout/Footer';
 import Headers from './layout/Headers';
 
-
 createRoot(document.getElementById('root')!).render(
   <Router basename="">
-  <Headers/>
+    <Headers />
     <Routes>
       <Route path="/" element={<RecallProducts />} />
       <Route path="/Nutrients" element={<Nutrients />} />
     </Routes>
-  <Footer/>
+    <Footer />
   </Router>
-)
+);

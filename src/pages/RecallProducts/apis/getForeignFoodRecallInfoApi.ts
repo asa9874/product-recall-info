@@ -23,8 +23,7 @@ export const getForeignFoodNoticeInfo = async (page: number,searchString: string
       NTCTXT_NO: item.NTCTXT_NO || "",  // 게시글번호, 없을 경우 빈 문자열
     }));
   } catch (error) {
-    console.error("API 호출 에러:", error);
+    console.error('API 호출 에러:', error);
     throw error;
   }
-  
 };

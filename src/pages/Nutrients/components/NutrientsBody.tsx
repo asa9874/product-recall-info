@@ -1,10 +1,10 @@
-import Body from "../../../layout/Body";
-import { NutrientState, useNutrientStore } from "../context";
-import { FoodNutrients } from "../types/FoodNutrients";
-import FoodsContainer from "./FoodsContainer";
-import NutrientsBarsContainer from "./NutrientsBarsContainer";
-import SeletedFoodContainer from "./SeletedFoodContainer";
-import { useReducer } from "react";
+import Body from '../../../layout/Body';
+import { NutrientState, useNutrientStore } from '../context';
+import { FoodNutrients } from '../types/FoodNutrients';
+import FoodsContainer from './FoodsContainer';
+import NutrientsBarsContainer from './NutrientsBarsContainer';
+import SeletedFoodContainer from './SeletedFoodContainer';
+import { useReducer } from 'react';
 
 export interface Action {
   type: 'ADD' | 'DELETE';
@@ -16,12 +16,34 @@ interface State {
   foods: FoodNutrients[];
 }
 
-export const updateNutrients = (food: FoodNutrients, operation: 'add' | 'delete') => {
+export const updateNutrients = (
+  food: FoodNutrients,
+  operation: 'add' | 'delete'
+) => {
   const validKeys: (keyof NutrientState)[] = [
-    'ENERGY_KCAL', 'PROTEIN_G', 'FAT_G', 'CARBOHYDRATE_G', 'CALCIUM_MG', 'IRON_MG', 'POTASSIUM_MG',
-    'SODIUM_MG', 'VITAMIN_A_UG_RAE', 'VITAMIN_C_MG', 'VITAMIN_D_UG', 'VITAMIN_B1_MG', 'VITAMIN_B2_MG',
-    'VITAMIN_B6_MG', 'VITAMIN_B12_UG', 'FOLATE_DFE_UG', 'CHOLINE_MG', 'PANTOTHENIC_ACID_MG', 'NIACIN_MG',
-    'SATURATED_FAT_G', 'CHOLESTEROL_MG', 'SUGARS_G', 'DIETARY_FIBER_G'
+    'ENERGY_KCAL',
+    'PROTEIN_G',
+    'FAT_G',
+    'CARBOHYDRATE_G',
+    'CALCIUM_MG',
+    'IRON_MG',
+    'POTASSIUM_MG',
+    'SODIUM_MG',
+    'VITAMIN_A_UG_RAE',
+    'VITAMIN_C_MG',
+    'VITAMIN_D_UG',
+    'VITAMIN_B1_MG',
+    'VITAMIN_B2_MG',
+    'VITAMIN_B6_MG',
+    'VITAMIN_B12_UG',
+    'FOLATE_DFE_UG',
+    'CHOLINE_MG',
+    'PANTOTHENIC_ACID_MG',
+    'NIACIN_MG',
+    'SATURATED_FAT_G',
+    'CHOLESTEROL_MG',
+    'SUGARS_G',
+    'DIETARY_FIBER_G',
   ];
   validKeys.forEach((key) => {
     const currentValue = useNutrientStore.getState()[key] as number;
@@ -31,22 +53,27 @@ export const updateNutrients = (food: FoodNutrients, operation: 'add' | 'delete'
       let updatedValue = typeof value === 'string' ? parseFloat(value) : value;
 
       if (operation === 'delete') {
-        updatedValue = (currentValue - updatedValue);
+        updatedValue = currentValue - updatedValue;
       } else if (operation === 'add') {
-        updatedValue = (currentValue + updatedValue);
+        updatedValue = currentValue + updatedValue;
       }
 
-      useNutrientStore.getState().setNutrient(key, parseFloat(updatedValue.toFixed(2))); // 상태 갱신
+      useNutrientStore
+        .getState()
+        .setNutrient(key, parseFloat(updatedValue.toFixed(2))); // 상태 갱신
     }
   });
 };
 
 const NutrientsBody = () => {
-  // reducer 함수 
+  // reducer 함수
   function reducer(state: State, action: Action): State {
     switch (action.type) {
       case 'ADD':
-        if (action.newFood && !state.foods.some(food => food.NUM === action.newFood?.NUM)) {
+        if (
+          action.newFood &&
+          !state.foods.some((food) => food.NUM === action.newFood?.NUM)
+        ) {
           updateNutrients(action.newFood, 'add');
           return { ...state, foods: [...state.foods, action.newFood] };
         }
@@ -54,7 +81,10 @@ const NutrientsBody = () => {
 
       case 'DELETE':
         if (action.id) {
-          return { ...state, foods: state.foods.filter(food => food.id !== action.id) };
+          return {
+            ...state,
+            foods: state.foods.filter((food) => food.id !== action.id),
+          };
         }
         return state;
 

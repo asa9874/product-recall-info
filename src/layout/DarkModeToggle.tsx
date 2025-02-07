@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const DarkModeToggle = () => {
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
+    localStorage.getItem('theme') === 'dark'
   );
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
 
@@ -20,7 +20,7 @@ const DarkModeToggle = () => {
       onClick={() => setDarkMode(!darkMode)}
       className="md:fixed top-5 right-5 p-3 rounded-full bg-gray-300 dark:bg-gray-700 text-black dark:text-white transition-all"
     >
-      {darkMode ? "🌙" : "☀️"}
+      {darkMode ? '🌙' : '☀️'}
     </button>
   );
 };

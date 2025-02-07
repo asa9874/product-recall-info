@@ -14,8 +14,8 @@ export const getFoodRecallInfo = async (page: number,searchString:string): Promi
     if (!Array.isArray(items)) {
       return [];
     }
-    
-    return items.map((item: any) => ({
+
+    return items.map((item: FoodRecallInfo) => ({
       PRDTNM: item.PRDTNM,
       RTRVLPRVNS: item.RTRVLPRVNS,
       BSSHNM: item.BSSHNM,
@@ -27,7 +27,7 @@ export const getFoodRecallInfo = async (page: number,searchString:string): Promi
       RTRVLPLANDOC_RTRVLMTHD: item.RTRVLPLANDOC_RTRVLMTHD,
       DISTBTMLMT: item.DISTBTMLMT,
       PRDLST_TYPE: item.PRDLST_TYPE,
-      IMG_FILE_PATH: item.IMG_FILE_PATH.split(",")[0],
+      IMG_FILE_PATH: item.IMG_FILE_PATH.split(',')[0],
       PRDLST_CD: item.PRDLST_CD,
       CRET_DTM: item.CRET_DTM,
       RTRVLDSUSE_SEQ: item.RTRVLDSUSE_SEQ,
@@ -37,8 +37,7 @@ export const getFoodRecallInfo = async (page: number,searchString:string): Promi
       LCNS_NO: item.LCNS_NO,
     }));
   } catch (error) {
-    console.error("API 호출 에러:", error);
+    console.error('API 호출 에러:', error);
     throw error;
   }
 };
-

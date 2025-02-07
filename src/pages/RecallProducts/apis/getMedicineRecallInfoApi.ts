@@ -25,7 +25,7 @@ export const getMedicineNoticeInfo = async (page: number, searchString: string):
       ITEM_SEQ: entry.ITEM_SEQ || "" // 품목 일련번호
     }));
   } catch (error) {
-    console.error("API 호출 에러:", error);
+    console.error('API 호출 에러:', error);
     throw error;
   }
 };
