@@ -4,7 +4,7 @@ import { FoodNutrients } from '../types/FoodNutrients';
 import FoodsContainer from './FoodsContainer';
 import NutrientsBarsContainer from './NutrientsBarsContainer';
 import SeletedFoodContainer from './SeletedFoodContainer';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 export interface Action {
   type: 'ADD' | 'DELETE';
@@ -66,7 +66,11 @@ export const updateNutrients = (
 };
 
 const NutrientsBody = () => {
-  // reducer 함수
+  const resetNutrients = useNutrientStore((state) => state.resetNutrients);
+  useEffect(() => {
+    resetNutrients(); // 페이지 로드 시 영양소 데이터 초기화
+  }, []);
+
   function reducer(state: State, action: Action): State {
     switch (action.type) {
       case 'ADD':
