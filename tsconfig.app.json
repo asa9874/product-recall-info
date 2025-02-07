@@ -22,5 +22,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "netlify/functions/getFoodRecallInfoApi.ts", "netlify/functions/getForeignFoodRecallInfoApi.ts", "netlify/functions/getMedicineRecallInfoApi.ts"]
+  "include": [
+    "src",
+    "netlify/functions/getFoodRecallInfoApi.ts",
+    "netlify/functions/getForeignFoodRecallInfoApi.ts",
+    "netlify/functions/getMedicineRecallInfoApi.ts"
+  ]
 }

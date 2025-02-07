@@ -27,16 +27,17 @@ interface FoodRecallInfo {
 const CALLCOUNT = 30;
 
 export const handler: Handler = async (event) => {
-  const { page, searchString }: { page: number; searchString: string } = JSON.parse(event.body || '{}'); // event에서 파라미터 추출
-  console.log("음식", page);
+  const { page, searchString }: { page: number; searchString: string } =
+    JSON.parse(event.body || '{}'); // event에서 파라미터 추출
+  console.log('음식', page);
 
   const url1 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
+    'https://openapi.foodsafetykorea.go.kr/api/' +
     process.env.VITE_FOOD_API_KEY +
     `/I0490/json/${1 + page * CALLCOUNT}/${30 + page * CALLCOUNT}`;
 
   const url2 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
+    'https://openapi.foodsafetykorea.go.kr/api/' +
     process.env.VITE_FOOD_API_KEY +
     `/I0490/json/1/500`;
 
@@ -55,25 +56,25 @@ export const handler: Handler = async (event) => {
     }
 
     const result: FoodRecallInfo[] = items.map((item: any) => ({
-      PRDTNM: item.PRDTNM || "",
-      RTRVLPRVNS: item.RTRVLPRVNS || "",
-      BSSHNM: item.BSSHNM || "",
-      ADDR: item.ADDR || "",
-      TELNO: item.TELNO || "",
-      BRCDNO: item.BRCDNO || "",
-      FRMLCUNIT: item.FRMLCUNIT || "",
-      MNFDT: item.MNFDT || "",
-      RTRVLPLANDOC_RTRVLMTHD: item.RTRVLPLANDOC_RTRVLMTHD || "",
-      DISTBTMLMT: item.DISTBTMLMT || "",
-      PRDLST_TYPE: item.PRDLST_TYPE || "",
-      IMG_FILE_PATH: item.IMG_FILE_PATH?.split(",")[0] || "",
-      PRDLST_CD: item.PRDLST_CD || "",
-      CRET_DTM: item.CRET_DTM || "",
-      RTRVLDSUSE_SEQ: item.RTRVLDSUSE_SEQ || "",
-      PRDLST_REPORT_NO: item.PRDLST_REPORT_NO || "",
-      RTRVL_GRDCD_NM: item.RTRVL_GRDCD_NM || "",
-      PRDLST_CD_NM: item.PRDLST_CD_NM || "",
-      LCNS_NO: item.LCNS_NO || "",
+      PRDTNM: item.PRDTNM || '',
+      RTRVLPRVNS: item.RTRVLPRVNS || '',
+      BSSHNM: item.BSSHNM || '',
+      ADDR: item.ADDR || '',
+      TELNO: item.TELNO || '',
+      BRCDNO: item.BRCDNO || '',
+      FRMLCUNIT: item.FRMLCUNIT || '',
+      MNFDT: item.MNFDT || '',
+      RTRVLPLANDOC_RTRVLMTHD: item.RTRVLPLANDOC_RTRVLMTHD || '',
+      DISTBTMLMT: item.DISTBTMLMT || '',
+      PRDLST_TYPE: item.PRDLST_TYPE || '',
+      IMG_FILE_PATH: item.IMG_FILE_PATH?.split(',')[0] || '',
+      PRDLST_CD: item.PRDLST_CD || '',
+      CRET_DTM: item.CRET_DTM || '',
+      RTRVLDSUSE_SEQ: item.RTRVLDSUSE_SEQ || '',
+      PRDLST_REPORT_NO: item.PRDLST_REPORT_NO || '',
+      RTRVL_GRDCD_NM: item.RTRVL_GRDCD_NM || '',
+      PRDLST_CD_NM: item.PRDLST_CD_NM || '',
+      LCNS_NO: item.LCNS_NO || '',
     }));
 
     return {
@@ -81,7 +82,7 @@ export const handler: Handler = async (event) => {
       body: JSON.stringify(result), // 성공적인 결과 반환
     };
   } catch (error) {
-    console.error("API 호출 에러:", error);
+    console.error('API 호출 에러:', error);
 
     return {
       statusCode: 500,

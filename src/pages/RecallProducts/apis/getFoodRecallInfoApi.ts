@@ -1,13 +1,18 @@
-
 import axios from 'axios';
 import { FoodRecallInfo } from '../types/FoodRecallInfo';
 
-export const getFoodRecallInfo = async (page: number,searchString:string): Promise<FoodRecallInfo[]> => {
+export const getFoodRecallInfo = async (
+  page: number,
+  searchString: string
+): Promise<FoodRecallInfo[]> => {
   try {
-    const response = await axios.post('/.netlify/functions/getFoodRecallInfoApi', {
-      page,
-      searchString,
-    });
+    const response = await axios.post(
+      '/.netlify/functions/getFoodRecallInfoApi',
+      {
+        page,
+        searchString,
+      }
+    );
 
     const items = response.data;
 

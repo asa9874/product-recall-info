@@ -22,17 +22,18 @@ const cleanHtml = (html: string): string => {
 };
 
 export const handler: Handler = async (event) => {
-  const { page, searchString }: { page: number; searchString: string } = JSON.parse(event.body || '{}'); // event에서 파라미터 추출
+  const { page, searchString }: { page: number; searchString: string } =
+    JSON.parse(event.body || '{}'); // event에서 파라미터 추출
 
-  console.log("해외음식", page);
+  console.log('해외음식', page);
 
   const url1 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
+    'https://openapi.foodsafetykorea.go.kr/api/' +
     process.env.VITE_FOREIGN_FOOD_API_KEY +
     `/I2810/json/${1 + page * CALLCOUNT}/${30 + page * CALLCOUNT}`;
 
   const url2 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
+    'https://openapi.foodsafetykorea.go.kr/api/' +
     process.env.VITE_FOREIGN_FOOD_API_KEY +
     `/I2810/json/1/500`;
 
@@ -51,12 +52,12 @@ export const handler: Handler = async (event) => {
     }
 
     const result: ForeignFoodRecallItem[] = items.map((item: any) => ({
-      TITL: item.TITL || "", // 제품명
-      DETECT_TITL: item.DETECT_TITL || "", // 유해물질
-      CRET_DTM: item.CRET_DTM || "", // 생성일자
-      BDT: cleanHtml(item.BDT || ""), // 본문내용
-      DOWNLOAD_URL: item.DOWNLOAD_URL || "", // 이미지 다운로드 URL
-      NTCTXT_NO: item.NTCTXT_NO || "", // 게시글번호
+      TITL: item.TITL || '', // 제품명
+      DETECT_TITL: item.DETECT_TITL || '', // 유해물질
+      CRET_DTM: item.CRET_DTM || '', // 생성일자
+      BDT: cleanHtml(item.BDT || ''), // 본문내용
+      DOWNLOAD_URL: item.DOWNLOAD_URL || '', // 이미지 다운로드 URL
+      NTCTXT_NO: item.NTCTXT_NO || '', // 게시글번호
     }));
 
     return {
@@ -64,7 +65,7 @@ export const handler: Handler = async (event) => {
       body: JSON.stringify(result), // 성공적인 결과 반환
     };
   } catch (error) {
-    console.error("API 호출 에러:", error);
+    console.error('API 호출 에러:', error);
 
     return {
       statusCode: 500,
