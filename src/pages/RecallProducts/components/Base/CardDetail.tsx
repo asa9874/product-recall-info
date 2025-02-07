@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 interface CardDetailProps {
   onClose: () => void; // 모달 닫기 핸들러
   children: React.ReactNode;
 }
 
-function CardDetail({ onClose,children }: CardDetailProps) {
+function CardDetail({ onClose, children }: CardDetailProps) {
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     };
-  }, []); 
+  }, []);
 
   // 모달 배경 클릭 시 모달 닫기 처리
   const handleModalClick = (e: React.MouseEvent) => {
@@ -28,11 +28,11 @@ function CardDetail({ onClose,children }: CardDetailProps) {
     >
       <motion.div
         className="bg-white w-full max-w-xl p-3 rounded-lg shadow-lg relative space-y-4 dark:bg-gray-800 dark:text-white"
-        onClick={(e) => e.stopPropagation()}  
-        initial={{ opacity: 0, scale: 0.9 }}  
-        animate={{ opacity: 1, scale: 1 }}  
-        exit={{ opacity: 0, scale: 0.8 }}  
-        transition={{ duration: 0.3 }} 
+        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.3 }}
       >
         {children}
         <button

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { getFoodNutrient } from "../apis/getFoodNutrientApi";
-import Food from "./Food";
-import { FoodNutrients } from "../types/FoodNutrients";
+import { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { getFoodNutrient } from '../apis/getFoodNutrientApi';
+import Food from './Food';
+import { FoodNutrients } from '../types/FoodNutrients';
 
 interface Props {
   addFood: (newFood: FoodNutrients) => void;
@@ -10,8 +10,8 @@ interface Props {
 
 function FoodsContainer({ addFood }: Props) {
   const [foodNutrients, setFoodNutrients] = useState<FoodNutrients[]>([]);
-  const [searchString, setSearchString] = useState("");
-  const [inputValue, setInputValue] = useState("");
+  const [searchString, setSearchString] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -31,7 +31,10 @@ function FoodsContainer({ addFood }: Props) {
     setSearchString(inputValue);
   };
 
-  const fetchFoodNutrient = async (currentPage: number, searchString: string) => {
+  const fetchFoodNutrient = async (
+    currentPage: number,
+    searchString: string
+  ) => {
     if (!hasMore) return;
     setError(null);
     try {
@@ -42,7 +45,7 @@ function FoodsContainer({ addFood }: Props) {
         setFoodNutrients((prevData) => [...prevData, ...data]);
       }
     } catch (error) {
-      setError("데이터를 불러오는 중 오류가 발생했습니다.");
+      setError('데이터를 불러오는 중 오류가 발생했습니다.');
       console.error(error);
     } finally {
     }
@@ -67,7 +70,9 @@ function FoodsContainer({ addFood }: Props) {
           next={() => setPage((prev) => prev + 1)}
           hasMore={hasMore}
           loader={<p className="mt-4 text-center">로딩 중...</p>}
-          endMessage={<p className="mt-4 text-center">더 이상 데이터가 없습니다.</p>}
+          endMessage={
+            <p className="mt-4 text-center">더 이상 데이터가 없습니다.</p>
+          }
           scrollableTarget="scrollableDiv"
           className="p-2"
         >

@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface CardProps {
   openModal: boolean;
@@ -9,7 +9,13 @@ interface CardProps {
   product: any;
 }
 
-function Card({ setOpenModal, children, openModal, CardDetail, product }: CardProps) {
+function Card({
+  setOpenModal,
+  children,
+  openModal,
+  CardDetail,
+  product,
+}: CardProps) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.5,
@@ -17,7 +23,7 @@ function Card({ setOpenModal, children, openModal, CardDetail, product }: CardPr
 
   return (
     <>
-    <motion.div
+      <motion.div
         ref={ref}
         className="bg-zinc-50 dark:bg-zinc-900 w-full h-80 p-4 rounded-lg shadow-md flex justify-center flex-col space-y-2 hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer"
         onClick={() => setOpenModal(true)}
@@ -31,7 +37,7 @@ function Card({ setOpenModal, children, openModal, CardDetail, product }: CardPr
       {openModal && (
         <CardDetail
           product={product}
-          onClose={() => setOpenModal(false)}  // 모달 닫기 핸들러
+          onClose={() => setOpenModal(false)} // 모달 닫기 핸들러
         />
       )}
     </>

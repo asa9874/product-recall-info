@@ -20,4 +20,3 @@ const useStore = create<GlobalState>((set) => ({
 }));
 
 export { useStore };
-

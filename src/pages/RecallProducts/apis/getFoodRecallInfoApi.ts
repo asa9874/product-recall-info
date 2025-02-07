@@ -1,17 +1,19 @@
 import axios from 'axios';
 import { FoodRecallInfo } from '../types/FoodRecallInfo';
 
-const CALLCOUNT=30;
-export const getFoodRecallInfo = async (page: number,searchString:string): Promise<FoodRecallInfo[]> => {
-  console.log("음식",page)
+const CALLCOUNT = 30;
+export const getFoodRecallInfo = async (
+  page: number,
+  searchString: string
+): Promise<FoodRecallInfo[]> => {
+  console.log('음식', page);
   const url1 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
+    'https://openapi.foodsafetykorea.go.kr/api/' +
     import.meta.env.VITE_FOOD_API_KEY +
-    `/I0490/json/${1+page*CALLCOUNT}/${30+page*CALLCOUNT}`;
-
+    `/I0490/json/${1 + page * CALLCOUNT}/${30 + page * CALLCOUNT}`;
 
   const url2 =
-    "https://openapi.foodsafetykorea.go.kr/api/" +
+    'https://openapi.foodsafetykorea.go.kr/api/' +
     import.meta.env.VITE_FOOD_API_KEY +
     `/I0490/json/1/500`;
 
@@ -25,7 +27,7 @@ export const getFoodRecallInfo = async (page: number,searchString:string): Promi
     if (!Array.isArray(items)) {
       return [];
     }
-    
+
     return items.map((item: any) => ({
       PRDTNM: item.PRDTNM,
       RTRVLPRVNS: item.RTRVLPRVNS,
@@ -38,7 +40,7 @@ export const getFoodRecallInfo = async (page: number,searchString:string): Promi
       RTRVLPLANDOC_RTRVLMTHD: item.RTRVLPLANDOC_RTRVLMTHD,
       DISTBTMLMT: item.DISTBTMLMT,
       PRDLST_TYPE: item.PRDLST_TYPE,
-      IMG_FILE_PATH: item.IMG_FILE_PATH.split(",")[0],
+      IMG_FILE_PATH: item.IMG_FILE_PATH.split(',')[0],
       PRDLST_CD: item.PRDLST_CD,
       CRET_DTM: item.CRET_DTM,
       RTRVLDSUSE_SEQ: item.RTRVLDSUSE_SEQ,
@@ -48,8 +50,7 @@ export const getFoodRecallInfo = async (page: number,searchString:string): Promi
       LCNS_NO: item.LCNS_NO,
     }));
   } catch (error) {
-    console.error("API 호출 에러:", error);
+    console.error('API 호출 에러:', error);
     throw error;
   }
 };
-

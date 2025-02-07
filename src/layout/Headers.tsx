@@ -1,11 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
-import DarkModeToggle from "./DarkModeToggle";
-import { motion } from "framer-motion";
+import { Link, useLocation } from 'react-router-dom';
+import DarkModeToggle from './DarkModeToggle';
+import { motion } from 'framer-motion';
 function Headers() {
   const location = useLocation();
   const navItems = [
-    { name: "제품 회수", path: "/" },
-    { name: "영양 정보", path: "/Nutrients" },
+    { name: '제품 회수', path: '/' },
+    { name: '영양 정보', path: '/Nutrients' },
   ];
 
   return (
@@ -19,29 +19,29 @@ function Headers() {
 
       <nav className="absolute left-1/2 transform -translate-x-1/2 flex gap-x-5">
         {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`relative text-xs md:text-base font-semibold px-4 py-2 transition-colors duration-200 ${
-                location.pathname === item.path
-                  ? "text-white"
-                  : "text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-              }`}
-            >
-              {location.pathname === item.path && (
-                <motion.div
-                  layoutId="activeNav"
-                  className="absolute inset-0 bg-blue-500 dark:bg-blue-400 rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{item.name}</span>
-            </Link>
-          ))}
+          <Link
+            key={item.path}
+            to={item.path}
+            className={`relative text-xs md:text-base font-semibold px-4 py-2 transition-colors duration-200 ${
+              location.pathname === item.path
+                ? 'text-white'
+                : 'text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+            }`}
+          >
+            {location.pathname === item.path && (
+              <motion.div
+                layoutId="activeNav"
+                className="absolute inset-0 bg-blue-500 dark:bg-blue-400 rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              />
+            )}
+            <span className="relative z-10">{item.name}</span>
+          </Link>
+        ))}
       </nav>
-      
+
       <DarkModeToggle />
     </header>
   );
