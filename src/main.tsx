@@ -8,7 +8,7 @@ import Footer from './layout/Footer';
 import Headers from './layout/Headers';
 
 createRoot(document.getElementById('root')!).render(
-  <Router basename="">
+  <Router>
     <Headers />
     <Routes>
       <Route path="/" element={<RecallProducts />} />
