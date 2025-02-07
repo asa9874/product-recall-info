@@ -20,7 +20,7 @@ export const getMedicineNoticeInfo = async (
       return [];
     }
 
-    return items.map((entry: any) => ({
+    return items.map((entry: MedicineRecallInfo) => ({
       PRDUCT: entry.PRDUCT || '', // 제품명
       ENTRPS: entry.ENTRPS || '', // 업체명
       RTRVL_RESN: entry.RTRVL_RESN || '', // 회수 사유

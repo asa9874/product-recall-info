@@ -20,7 +20,7 @@ export const getForeignFoodNoticeInfo = async (
       return [];
     }
     //console.log(items);
-    return items.map((item: any) => ({
+    return items.map((item: ForeignFoodRecallInfo) => ({
       TITL: item.TITL || '', // 제품명, 없을 경우 빈 문자열
       DETECT_TITL: item.DETECT_TITL || '', // 유해물질, 없을 경우 빈 문자열
       CRET_DTM: item.CRET_DTM || '', // 생성일자, 없을 경우 빈 문자열

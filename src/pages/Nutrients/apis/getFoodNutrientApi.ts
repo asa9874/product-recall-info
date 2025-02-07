@@ -19,7 +19,7 @@ export const getFoodNutrient = async (
     if (!Array.isArray(items)) {
       return [];
     }
-    return items.map((entry: any) => {
+    return items.map((entry: FoodNutrients) => {
       const item = entry;
       return {
         id: '',
