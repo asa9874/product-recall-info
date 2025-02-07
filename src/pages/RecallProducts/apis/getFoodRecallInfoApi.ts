@@ -28,7 +28,7 @@ export const getFoodRecallInfo = async (
       return [];
     }
 
-    return items.map((item: any) => ({
+    return items.map((item: FoodRecallInfo) => ({
       PRDTNM: item.PRDTNM,
       RTRVLPRVNS: item.RTRVLPRVNS,
       BSSHNM: item.BSSHNM,

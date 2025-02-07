@@ -34,7 +34,7 @@ export const getFoodNutrient = async (
     }
 
     return items.map((entry) => {
-      const item:FoodApiItem = entry;
+      const item: FoodApiItem = entry;
       return {
         id: '',
         NUM: item.NUM || 0,

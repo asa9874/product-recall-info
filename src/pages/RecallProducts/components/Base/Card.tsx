@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FoodRecallInfo } from '../../types/FoodRecallInfo';
+import { ForeignFoodRecallInfo } from '../../types/ForeignFoodRecallInfo';
+import { MedicineRecallInfo } from '../../types/MedicineRecallInfo';
 
 interface CardProps {
   openModal: boolean;
   setOpenModal: (open: boolean) => void;
   children: React.ReactNode; // 자식 컴포넌트로 데이터를 전달
   CardDetail: React.ElementType;
-  product: any;
+  product: FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo;
 }
 
 function Card({

@@ -72,8 +72,8 @@ function RecallProductsBody() {
         setProductData((prevData) => [...prevData, ...filteredData]);
       }
       setLoading(false);
-    } catch (err) {
-      setError('데이터를 불러오는 중 오류가 발생했습니다.');
+    } catch{
+      setError('데이터를 불러오는 중 오류가 발생했습니다. error: ');
       setLoading(false);
     }
   };

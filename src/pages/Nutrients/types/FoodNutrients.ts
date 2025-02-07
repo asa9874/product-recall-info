@@ -56,8 +56,6 @@ export interface FoodNutrients {
   VITAMIN_D3_UG: number; // 비타민 D3(μg)
 }
 
-
-
 export interface FoodApiItem {
   id: string;
   NUM: number;

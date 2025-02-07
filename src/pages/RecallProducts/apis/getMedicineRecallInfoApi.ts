@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { MedicineRecallInfo } from '../types/MedicineRecallInfo';
 
+interface ApiResponse {
+  item: Array<{ item: MedicineRecallInfo }>;
+}
+
 export const getMedicineNoticeInfo = async (
   page: number,
   searchString: string
@@ -28,12 +32,12 @@ export const getMedicineNoticeInfo = async (
 
   try {
     const response = await axios.get(url);
-    const items = response.data.body.items;
+    const items = response.data.body.items.map((entry: ApiResponse) => entry.item);
     if (!Array.isArray(items)) {
       return [];
     }
-    return items.map((entry: any) => {
-      const item = entry.item;
+
+    return items.map((item: MedicineRecallInfo) => {
       return {
         PRDUCT: item.PRDUCT || '', // 제품명
         ENTRPS: item.ENTRPS || '', // 업체명
