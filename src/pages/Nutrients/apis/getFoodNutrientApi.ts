@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FoodNutrients } from '../types/FoodNutrients';
+import { FoodApiItem, FoodNutrients } from '../types/FoodNutrients';
 
 export const getFoodNutrient = async (
   page: number,
@@ -33,8 +33,8 @@ export const getFoodNutrient = async (
       return [];
     }
 
-    return items.map((entry: any) => {
-      const item = entry;
+    return items.map((entry) => {
+      const item:FoodApiItem = entry;
       return {
         id: '',
         NUM: item.NUM || 0,
