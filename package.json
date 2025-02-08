@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --max-warnings=0",
+    "format:check": "prettier --check 'src/**/*.{ts,tsx,js,jsx,json,md,yml}'",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
