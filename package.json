@@ -43,7 +43,7 @@
     "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
-    "vite": "^6.0.5"
+    "vite": "^6.1.0"
   },
   "homepage": "https://asa9874.github.io/product-recall-info/"
 }
