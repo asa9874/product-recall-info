@@ -32,7 +32,9 @@ export const getMedicineNoticeInfo = async (
 
   try {
     const response = await axios.get(url);
-    const items = response.data.body.items.map((entry: ApiResponse) => entry.item);
+    const items = response.data.body.items.map(
+      (entry: ApiResponse) => entry.item
+    );
     if (!Array.isArray(items)) {
       return [];
     }

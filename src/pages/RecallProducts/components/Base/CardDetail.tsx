@@ -32,11 +32,11 @@ function CardDetail({ onClose, children }: CardDetailProps) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         drag="y"
-        dragConstraints={{ top: 0, bottom: 200 }} 
-        dragElastic={0.2} 
+        dragConstraints={{ top: 0, bottom: 200 }}
+        dragElastic={0.2}
         onDragEnd={(_, info) => {
           if (info.offset.y > 100) {
-            onClose(); 
+            onClose();
           }
         }}
       >

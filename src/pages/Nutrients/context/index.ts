@@ -25,7 +25,7 @@ export interface NutrientState {
   SUGARS_G: number;
   DIETARY_FIBER_G: number;
   setNutrient: (key: keyof NutrientState, value: number) => void;
-  resetNutrients: () => void; 
+  resetNutrients: () => void;
 }
 
 const initialState: Omit<NutrientState, 'setNutrient' | 'resetNutrients'> = {
