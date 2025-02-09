@@ -1,4 +1,3 @@
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getFoodRecallInfo } from '../apis/getFoodRecallInfoApi';
@@ -73,7 +72,7 @@ function RecallProductsBody() {
       }
       setLoading(false);
     } catch {
-      setError('데이터를 불러오는 중 오류가 발생했습니다. error: ');
+      setError('데이터를 불러오는 중 오류가 발생했습니다.');
       setLoading(false);
     }
   };
@@ -81,7 +80,21 @@ function RecallProductsBody() {
   if (error) {
     return (
       <div className="h-screen flex flex-col items-center justify-center text-2xl text-red-500 dark:text-red-400">
-        <ExclamationTriangleIcon className="h-1/4 w-1/4 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-32 lg:w-32" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="size-20"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+          />
+        </svg>
+
         <a className="text-center px-4">{error}</a>
         <button
           className="mt-20 bg-emerald-50 dark:bg-emerald-800 text-black dark:text-white rounded-3xl w-4/5 h-12 sm:w-3/5 md:w-2/5 lg:w-1/4"
