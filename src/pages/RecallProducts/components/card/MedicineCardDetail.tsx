@@ -1,47 +1,41 @@
-import { useState } from 'react';
 import CardDetail from '../Base/CardDetail';
 import { MedicineRecallInfo } from '../../types/MedicineRecallInfo';
+import KakaoShareButton from '../KakaoShare';
 
 interface CardDetailProps {
   product: MedicineRecallInfo;
-  onClose: () => void; // 모달 닫기 핸들러
+  onClose: () => void;
 }
 
 function MedicineCardDetail({ product, onClose }: CardDetailProps) {
-  const [hasError, setHasError] = useState(false); // 이미지 오류 상태 추가
+  const { PRDUCT, RECALL_COMMAND_DATE, RTRVL_RESN, ITEM_SEQ } = product;
 
   return (
     <CardDetail onClose={onClose}>
-      <h3 className="text-sm font-semibold mb-4 text-center">
-        {product.PRDUCT}
-      </h3>
-
+      <KakaoShareButton
+        title={`${PRDUCT}`}
+        description={`${RTRVL_RESN}`}
+        imageUrl={''}
+        link="https://productrecall.netlify.app/"
+      />
+      <h3 className="text-sm font-semibold mb-4 text-center">{PRDUCT}</h3>
       <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-md overflow-hidden mb-4">
-        {hasError ? (
-          <div className="flex items-center justify-center bg-gray-800 h-full text-white text-sm dark:bg-gray-700">
-            제품 이미지가 없습니다
-          </div>
-        ) : (
-          <img
-            src=""
-            alt={product.PRDUCT}
-            className="w-full h-full object-cover rounded-md"
-            onError={() => setHasError(true)} // 오류 발생 시 hasError 상태 true로 변경
-          />
-        )}
+        <div className="w-full h-full object-cover rounded-md bg-black flex items-center justify-center text-white text-sm">
+          제품 이미지가 없습니다
+        </div>
       </div>
 
       <div className="space-y-3">
         <p className="text-xs text-gray-400">
-          등록일: {product.RECALL_COMMAND_DATE.split(' ')[0]}
+          등록일: {RECALL_COMMAND_DATE.split(' ')[0]}
         </p>
         <p className="text-xs text-gray-300 whitespace-pre-line">
-          상세 내용: {product.RTRVL_RESN}
+          상세 내용: {RTRVL_RESN}
         </p>
       </div>
 
       <div className="mt-4 border-t pt-3">
-        <p className="text-xs text-gray-400">게시글 번호: {product.ITEM_SEQ}</p>
+        <p className="text-xs text-gray-400">게시글 번호: {ITEM_SEQ}</p>
       </div>
     </CardDetail>
   );

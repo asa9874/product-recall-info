@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ForeignFoodRecallInfo } from '../../types/ForeignFoodRecallInfo';
 import CardDetail from '../Base/CardDetail';
+import KakaoShareButton from '../KakaoShare';
 interface CardDetailProps {
   product: ForeignFoodRecallInfo;
   onClose: () => void; // 모달 닫기 핸들러
@@ -12,8 +13,13 @@ function ForeignFoodCardDetail({ product, onClose }: CardDetailProps) {
 
   return (
     <CardDetail onClose={onClose}>
+      <KakaoShareButton
+        title={`${TITL}`}
+        description={`${DETECT_TITL} 검출`}
+        imageUrl={DOWNLOAD_URL}
+        link="https://productrecall.netlify.app/"
+      />
       <h3 className="text-sm font-semibold mb-4 text-center">{TITL}</h3>
-
       <div className="relative w-full h-40 sm:h-48 md:h-56 rounded-md overflow-hidden mb-4">
         {hasError ? (
           <div className="flex items-center justify-center bg-black h-full text-white text-sm">
