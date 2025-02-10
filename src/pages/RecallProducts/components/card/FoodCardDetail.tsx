@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FoodRecallInfo } from '../../types/FoodRecallInfo';
 import CardDetail from '../Base/CardDetail';
+import KakaoShareButton from '../KakaoShare';
 
 interface CardDetailProps {
   product: FoodRecallInfo;
@@ -34,6 +35,12 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
 
   return (
     <CardDetail onClose={onClose}>
+      <KakaoShareButton
+        title={`${PRDTNM}(${RTRVL_GRDCD_NM} 회수상품)`}
+        description={`${RTRVLPRVNS}`}
+        imageUrl={IMG_FILE_PATH}
+        link="https://productrecall.netlify.app/"
+      />
       <h3 className="text-sm font-semibold mb-4 text-center dark:text-white">
         {PRDTNM}
       </h3>
