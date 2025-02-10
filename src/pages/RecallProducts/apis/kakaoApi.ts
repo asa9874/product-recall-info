@@ -5,6 +5,8 @@ declare global {
   }
 }
 
+import axios from 'axios';
+
 const initializeKakaoAPI = async (
   title: string,
   description: string,
@@ -12,22 +14,23 @@ const initializeKakaoAPI = async (
   link: string
 ) => {
   try {
-    const response = await fetch('/.netlify/functions/kakaoApi', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    const response = await axios.post(
+      '/.netlify/functions/kakaoApi',
+      {
         title,
         description,
         imageUrl,
         link,
-      }),
-    });
-    const result = await response.json();
-    console.log(result);
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    console.log(response.data);
   } catch (error) {
-    console.error('카카오톡 공유오류');
+    console.error('카카오톡 공유 오류', error);
   }
 };
 
