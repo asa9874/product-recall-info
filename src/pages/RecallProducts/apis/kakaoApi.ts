@@ -12,7 +12,7 @@ const initializeKakaoAPI = async (
   link: string
 ) => {
   try {
-    const response = await fetch('/.netlify/functions/kakaoShare', {
+    const response = await fetch('/.netlify/functions/kakaoApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
