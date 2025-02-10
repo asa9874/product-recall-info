@@ -14,7 +14,7 @@ const handler: Handler = async (event) => {
     const { title, description, imageUrl, link }: KakaoShareRequest =
       JSON.parse(event.body || '{}');
 
-    const APIKEY = process.env.VITE_KAKAO_API_KEY;
+    const APIKEY = process.env.VITE_KAKAO_REST_API_KEY;
     if (!APIKEY) {
       throw new Error('Kakao API key is missing in environment variables');
     }
@@ -45,6 +45,7 @@ const handler: Handler = async (event) => {
       {
         headers: {
           Authorization: `Bearer ${APIKEY}`,
+          'Access-Control-Allow-Origin': '*',
         },
       }
     );
