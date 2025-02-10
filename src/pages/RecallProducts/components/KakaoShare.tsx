@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import initializeKakaoAPI from '../apis/kakaoApi';
 
 interface KakaoShareProps {
@@ -14,12 +13,6 @@ function KakaoShareButton({
   imageUrl,
   link,
 }: KakaoShareProps) {
-  useEffect(() => {
-    if (!window.Kakao) {
-      initializeKakaoAPI(title, description, imageUrl, link);
-    }
-  }, [title, description, imageUrl, link]);
-
   const shareKakao = () => {
     initializeKakaoAPI(title, description, imageUrl, link);
   };
@@ -27,9 +20,9 @@ function KakaoShareButton({
   return (
     <button
       onClick={shareKakao}
-      className="bg-yellow-400 text-black p-1 rounded-lg hover:bg-yellow-500 transition flex items-center"
+      className="bg-yellow-400 text-black p-2 rounded-lg hover:bg-yellow-500 transition flex items-center absolute right-4 top-0"
     >
-      <img src="/kakao.png" alt="카카오톡 로고" className="w-6 h-6" />
+      <img src="/kakao.png" alt="카카오톡 로고" className="w-5 h-5" />
     </button>
   );
 }

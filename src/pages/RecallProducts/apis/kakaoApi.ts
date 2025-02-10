@@ -18,7 +18,7 @@ const initializeKakaoAPI = (
     script.async = true;
     script.onload = () => {
       if (!window.Kakao.isInitialized()) {
-        window.Kakao.init(APIKEY); 
+        window.Kakao.init(APIKEY);
       }
       // 카카오톡 메시지 보내기
       window.Kakao.Link.sendDefault({
