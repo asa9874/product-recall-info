@@ -9,13 +9,14 @@ import { useEffect, useReducer } from 'react';
 export interface Action {
   type: 'ADD' | 'DELETE';
   newFood?: FoodNutrients;
-  id?: string; // id 추가
+  id?: string;
 }
 
 interface State {
   foods: FoodNutrients[];
 }
 
+// 영양소 데이터 업데이트 함수
 export const updateNutrients = (
   food: FoodNutrients,
   operation: 'add' | 'delete'
@@ -60,15 +61,17 @@ export const updateNutrients = (
 
       useNutrientStore
         .getState()
-        .setNutrient(key, parseFloat(updatedValue.toFixed(2))); // 상태 갱신
+        .setNutrient(key, parseFloat(updatedValue.toFixed(2)));
     }
   });
 };
 
 const NutrientsBody = () => {
   const resetNutrients = useNutrientStore((state) => state.resetNutrients);
+
+  // 페이지 로드 시 영양소 데이터 초기화
   useEffect(() => {
-    resetNutrients(); // 페이지 로드 시 영양소 데이터 초기화
+    resetNutrients();
   }, []);
 
   function reducer(state: State, action: Action): State {

@@ -5,16 +5,16 @@ import { useStore } from '../context';
 function CollapseMenu() {
   const { selectedItem, setSelectedItem, setSearchString } = useStore();
   const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(0); // 스크롤 방향
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setVisible(false); // 스크롤을 내리면 숨김
+        setVisible(false);
       } else {
-        setVisible(true); // 스크롤을 올리면 표시
+        setVisible(true);
       }
 
       setLastScrollY(currentScrollY);

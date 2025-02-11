@@ -7,7 +7,7 @@ import { MedicineRecallInfo } from '../../types/MedicineRecallInfo';
 interface CardProps {
   openModal: boolean;
   setOpenModal: (open: boolean) => void;
-  children: React.ReactNode; // 자식 컴포넌트로 데이터를 전달
+  children: React.ReactNode;
   CardDetail: React.ElementType;
   product: FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo;
 }
@@ -34,14 +34,11 @@ function Card({
         animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 10 }}
         transition={{ duration: 0.2 }}
       >
-        {children} {/* 자식 컴포넌트 렌더링 */}
+        {children}
       </motion.div>
 
       {openModal && (
-        <CardDetail
-          product={product}
-          onClose={() => setOpenModal(false)} // 모달 닫기 핸들러
-        />
+        <CardDetail product={product} onClose={() => setOpenModal(false)} />
       )}
     </>
   );

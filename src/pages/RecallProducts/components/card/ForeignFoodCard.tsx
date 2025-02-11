@@ -1,4 +1,3 @@
-// ForeignFoodCard.tsx
 import { useState } from 'react';
 import { ForeignFoodRecallInfo } from '../../types/ForeignFoodRecallInfo';
 import ForeignFoodCardDetail from './ForeignFoodCardDetail';

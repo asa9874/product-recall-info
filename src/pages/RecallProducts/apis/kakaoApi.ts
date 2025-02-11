@@ -20,7 +20,6 @@ const initializeKakaoAPI = (
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init(APIKEY);
       }
-      // 카카오톡 메시지 보내기
       window.Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
@@ -45,9 +44,8 @@ const initializeKakaoAPI = (
     };
     document.body.appendChild(script);
   } else if (!window.Kakao.isInitialized()) {
-    window.Kakao.init(APIKEY); // 이미 SDK가 로드되었으면 초기화
+    window.Kakao.init(APIKEY);
   } else {
-    // 카카오 SDK가 이미 초기화된 경우, 바로 카카오톡 메시지 보내기
     window.Kakao.Link.sendDefault({
       objectType: 'feed',
       content: {

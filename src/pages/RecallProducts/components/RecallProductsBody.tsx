@@ -17,13 +17,12 @@ import Body from '../../../layout/Body';
 function RecallProductsBody() {
   const [productData, setProductData] = useState<
     (FoodRecallInfo | ForeignFoodRecallInfo | MedicineRecallInfo)[]
-  >([]); // 제품 데이터 타입 명시
-  const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
-  const [error, setError] = useState<string | null>(null); // 에러 상태
+  >([]); // 제품 데이터 타입
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const { searchString, selectedItem, page, setPage } = useStore();
 
-  //TODO: 페이지 초기화버그 수정
   useEffect(() => {
     window.scrollTo(0, 0);
     setPage(0);

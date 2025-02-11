@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useStore } from '../context';
 
 function Searchbar() {
-  const { searchString, setSearchString } = useStore(); // zustand store에서 값 가져오기
-  const [inputValue, setInputValue] = useState(searchString); // 입력값 state 관리
+  const { searchString, setSearchString } = useStore();
+  const [inputValue, setInputValue] = useState(searchString);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    setSearchString(inputValue); // 검색어를 zustand store에 저장
+    setSearchString(inputValue);
   };
 
   return (

@@ -2,3 +2,17 @@
 node_modules
 dist
 public
+.package-lock.json
+.package.json
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+vite.config.ts
+Readme.md
+.gitignore
+.prettierrc
+.prettierignore
+docker-compose.yml
+Dockerfile
+eslint.config.js
+tailwind.config.js

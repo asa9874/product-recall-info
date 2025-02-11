@@ -9,7 +9,6 @@ interface GlobalState {
   setPage: (page: number) => void;
 }
 
-// zustand store
 const useStore = create<GlobalState>((set) => ({
   searchString: '',
   setSearchString: (searchString) => set({ searchString }),

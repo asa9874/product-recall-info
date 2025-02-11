@@ -5,11 +5,11 @@ import KakaoShareButton from '../KakaoShare';
 
 interface CardDetailProps {
   product: FoodRecallInfo;
-  onClose: () => void; // 모달 닫기 핸들러
+  onClose: () => void;
 }
 
 function FoodCardDetail({ product, onClose }: CardDetailProps) {
-  const [hasError, setHasError] = useState(false); // 이미지 오류 상태 추가
+  const [hasError, setHasError] = useState(false);
 
   const {
     CRET_DTM,
@@ -54,7 +54,7 @@ function FoodCardDetail({ product, onClose }: CardDetailProps) {
             src={IMG_FILE_PATH}
             alt={PRDTNM}
             className="w-full h-full object-cover rounded-md"
-            onError={() => setHasError(true)} // 오류 발생 시 hasError 상태 true로 변경
+            onError={() => setHasError(true)}
           />
         )}
       </div>
